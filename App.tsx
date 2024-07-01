@@ -3,14 +3,12 @@ import { Text } from 'react-native';
 import {ThemeProvider} from "styled-components";
 import styled from "styled-components/native";
 import {lightTheme} from "./src/global/theme";
+import {Routes} from "./src/routes";
 
 export default function App() {
     return (
         <ThemeProvider theme={lightTheme}>
-            <Container>
-                <Text>Open up App.tsx to start working on your app!</Text>
-                <StatusBar style="auto" />
-            </Container>
+            <Routes />
         </ThemeProvider>
     );
 }
