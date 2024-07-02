@@ -1,6 +1,7 @@
 
 
 export type RootStackParamList = {
-    List: {}; // ou undefined
+    List: {}; // {} parametros ou undefined
+    Home: {};
     // Adicione outras rotas aqui...
 }
