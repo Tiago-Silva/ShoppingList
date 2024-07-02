@@ -1,19 +1,27 @@
-import {Text} from "react-native";
-import {StatusBar} from "expo-status-bar";
-import styled from "styled-components/native";
+import Button from "../../components/button";
+import {StackNavigationProp} from "@react-navigation/stack";
+import {RootStackParamList} from "../../types/types";
+import {useNavigation} from "@react-navigation/native";
+import * as S from "./styles";
 
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 export const List = () => {
+    const navigation = useNavigation<NavigationProp>();
+
+    const handleNavigation = () => {
+        navigation.reset({
+            index: 0,
+            routes: [{name: 'Home'}]
+        })
+    }
+
     return (
-        <Container>
-            <Text>Lists in here</Text>
-        </Container>
+        <S.Container>
+            <Button
+                title="Home"
+                handleNavigation={handleNavigation}
+            />
+        </S.Container>
     );
 }
-
-const Container = styled.View`
-    flex: 1;
-    background-color: ${props => props.theme.colors.background};
-    align-items: center;
-    justify-content: center;
-`;
