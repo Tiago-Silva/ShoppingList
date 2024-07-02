@@ -1,21 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text } from 'react-native';
+import { StatusBar } from 'react-native';
 import {ThemeProvider} from "styled-components";
-import styled from "styled-components/native";
-import {lightTheme} from "./src/global/theme";
+import {darkTheme} from "./src/global/theme";
 import {Routes} from "./src/routes";
+import Header from "./src/components/header";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
 
 export default function App() {
     return (
-        <ThemeProvider theme={lightTheme}>
-            <Routes />
+        <ThemeProvider theme={darkTheme}>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <StatusBar
+                    backgroundColor='#2a2e34'
+                    barStyle="light-content"
+                />
+                <Header />
+                <Routes />
+            </GestureHandlerRootView>
         </ThemeProvider>
     );
 }
-
-const Container = styled.View`
-    flex: 1;
-    background-color: ${props => props.theme.colors.background};
-    align-items: center;
-    justify-content: center;
-`;
