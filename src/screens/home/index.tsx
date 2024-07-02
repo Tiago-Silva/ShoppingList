@@ -1,20 +1,31 @@
-import styled from "styled-components/native";
-import {Text} from "react-native";
-import {StatusBar} from "expo-status-bar";
+import * as S from "./styles";
+import {useNavigation} from "@react-navigation/native";
+import {StackNavigationProp} from "@react-navigation/stack";
+import {RootStackParamList} from "../../types/types";
+import Button from "../../components/button";
 
+
+type NavigationProp = StackNavigationProp<RootStackParamList, 'List'>;
 
 export const Home = () => {
+    const navigation = useNavigation<NavigationProp>();
+
+    const handleNavigation = () => {
+        console.log('Navigation');
+        navigation.reset({
+            index: 1,
+            routes: [{name: 'List'}]
+        })
+    }
+
     return (
-        <Container>
-            <Text>Open up App.tsx to start working on your app!</Text>
-            <StatusBar style="auto" />
-        </Container>
+        <S.Container>
+            <S.WrapperButton>
+                <Button
+                    title={'+ Nova Lista'}
+                    handleNavigation={handleNavigation}
+                />
+            </S.WrapperButton>
+        </S.Container>
     );
 }
-
-const Container = styled.View`
-    flex: 1;
-    background-color: ${props => props.theme.colors.background};
-    align-items: center;
-    justify-content: center;
-`;
