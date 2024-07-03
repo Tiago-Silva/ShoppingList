@@ -11,7 +11,6 @@ export const Home = () => {
     const navigation = useNavigation<NavigationProp>();
 
     const handleNavigation = () => {
-        console.log('Navigation');
         navigation.reset({
             index: 1,
             routes: [{name: 'List'}]

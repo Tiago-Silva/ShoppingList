@@ -1,11 +1,13 @@
 import styled from "styled-components/native";
-import {RFValue} from "react-native-responsive-fontsize";
+import {RFPercentage, RFValue} from "react-native-responsive-fontsize";
 
 
 export const Container = styled.View`
     flex: 1;
     background-color: ${props => props.theme.colors.background};
     position: relative;
+
+    padding: ${RFPercentage(3)}px ${RFPercentage(2)}px ${RFPercentage(3)}px ${RFPercentage(2)}px;
 `;
 
 export const WrapperButton = styled.View`
@@ -16,5 +18,5 @@ export const WrapperButton = styled.View`
     
     position: absolute;
     bottom: 20px;
-    padding-right: ${RFValue(10)}px;
+    //padding-right: ${RFValue(7)}px;
 `;
