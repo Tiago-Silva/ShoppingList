@@ -1,16 +1,34 @@
 import React from 'react';
 import * as S from "./styles";
-import RabbitAnimation from "../animation/RabbitAnimation";
 
-const Header = () => {
+interface Props {
+    isShow: boolean;
+    handleNavigation?: () => void;
+}
+
+const Header = ({
+    isShow,
+    handleNavigation
+}: Props) => {
+
+    const renderHeaderContent = () => {
+        if (isShow) {
+            return (
+                <>
+                    <S.Title>Minhas listas</S.Title>
+                    <S.WrapperIcon>
+                        <S.Icon name="more-vertical" />
+                    </S.WrapperIcon>
+                </>
+            );
+        } else {
+            return <S.Icon name="arrow-left" onPress={handleNavigation}/>;
+        }
+    };
+
     return (
         <S.Container>
-            <S.Title>Minhas listas</S.Title>
-
-            <S.WrapperIcon>
-                <RabbitAnimation />
-                <S.Icon name="more-vertical" />
-            </S.WrapperIcon>
+            {renderHeaderContent()}
         </S.Container>
     );
 };
