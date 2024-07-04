@@ -13,7 +13,6 @@ export default function App() {
                     backgroundColor='#2a2e34'
                     barStyle="light-content"
                 />
-                <Header />
                 <Routes />
             </GestureHandlerRootView>
         </ThemeProvider>
