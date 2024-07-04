@@ -5,16 +5,13 @@ import {RootStackParamList} from "../../types/types";
 import Button from "../../components/button";
 
 
-type NavigationProp = StackNavigationProp<RootStackParamList, 'List'>;
+type NavigationProp = StackNavigationProp<RootStackParamList>;
 
 export const Home = () => {
     const navigation = useNavigation<NavigationProp>();
 
     const handleNavigation = () => {
-        navigation.reset({
-            index: 1,
-            routes: [{name: 'List'}]
-        })
+        navigation.navigate({name: 'List', params: {} });
     }
 
     return (

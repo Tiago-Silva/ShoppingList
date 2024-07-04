@@ -2,6 +2,7 @@ import {Home} from "../screens/home";
 import {NavigationContainer} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {List} from "../screens/list";
+import Header from "../components/header";
 
 const Stack = createStackNavigator();
 
@@ -13,14 +14,20 @@ export const Routes = () => {
                     name="Home"
                     component={Home}
                     options={{
-                        headerShown: false,
+                        headerShown: true,
+                        header: ({ navigation, route, options, back })  => {
+                            return <Header isShow={true} />
+                        }
                     }}
                 />
                 <Stack.Screen
                     name="List"
                     component={List}
                     options={{
-                        headerShown: false,
+                        headerShown: true,
+                        header: ({ navigation, route, options, back }) => {
+                            return <Header isShow={false} handleNavigation={navigation.goBack}/>
+                        }
                     }}
                 />
             </Stack.Navigator>
