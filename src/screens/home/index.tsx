@@ -16,12 +16,18 @@ export const Home = () => {
 
     return (
         <S.Container>
-            <S.WrapperButton>
+            <S.Header>
+                <S.Title>
+                    List card ou imagem
+                </S.Title>
+            </S.Header>
+            <S.Footer>
                 <Button
                     title={'+ Nova Lista'}
+                    width={50}
                     handleNavigation={handleNavigation}
                 />
-            </S.WrapperButton>
+            </S.Footer>
         </S.Container>
     );
 }
