@@ -23,7 +23,7 @@ export const Home = () => {
                 <Button
                     title={'+ Nova Lista'}
                     width={50}
-                    handleNavigation={handleNavigation}
+                    handleOnPress={handleNavigation}
                 />
             </S.Footer>
         </S.Container>
