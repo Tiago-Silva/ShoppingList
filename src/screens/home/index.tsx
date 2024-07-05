@@ -3,6 +3,7 @@ import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import Button from "../../components/button";
+import ListCard from "../../components/ListCard";
 
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
@@ -16,11 +17,8 @@ export const Home = () => {
 
     return (
         <S.Container>
-            <S.Header>
-                <S.Title>
-                    List card ou imagem
-                </S.Title>
-            </S.Header>
+            <ListCard />
+
             <S.Footer>
                 <Button
                     title={'+ Nova Lista'}
