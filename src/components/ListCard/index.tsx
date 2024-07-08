@@ -3,18 +3,26 @@ import * as S from './styles';
 import * as Progress from 'react-native-progress';
 import {useTheme} from "styled-components";
 
-const ListCard = () => {
+export interface PropsListCard {
+    title?: string;
+    items?: number;
+}
+
+const ListCard = ({
+    title = 'Compras',
+    items = 0.3,
+}: PropsListCard) => {
     const theme = useTheme();
 
     return (
         <S.Container>
             <S.Header>
-                <S.Title>Compras</S.Title>
+                <S.Title>{title}</S.Title>
                 <S.Icon name={'more-vertical'} />
             </S.Header>
             <S.Footer>
                 <Progress.Bar
-                    progress={0.3}
+                    progress={items}
                     width={310}
                     color={theme.colors.text_bar}
                 />
