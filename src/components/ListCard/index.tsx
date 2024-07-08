@@ -2,27 +2,27 @@ import React from 'react';
 import * as S from './styles';
 import * as Progress from 'react-native-progress';
 import {useTheme} from "styled-components";
-
-export interface PropsListCard {
-    title?: string;
-    items?: number;
-}
+import {ShoppingList} from "../interface/interface";
 
 const ListCard = ({
-    title = 'Compras',
-    items = 0.3,
-}: PropsListCard) => {
+    name,
+    items,
+}: ShoppingList) => {
     const theme = useTheme();
 
+    const handleShowItems = () => {
+        console.log('Adicionar nova lista');
+    }
+
     return (
-        <S.Container>
+        <S.Container onPress={handleShowItems}>
             <S.Header>
-                <S.Title>{title}</S.Title>
+                <S.Title>{name}</S.Title>
                 <S.Icon name={'more-vertical'} />
             </S.Header>
             <S.Footer>
                 <Progress.Bar
-                    progress={items}
+                    progress={items.length}
                     width={310}
                     color={theme.colors.text_bar}
                 />
