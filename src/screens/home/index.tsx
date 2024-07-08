@@ -22,11 +22,10 @@ export const Home = () => {
         useCallback(() => {
             const fetchLists = async () => {
                 const lists = await ShoppingService.getAll();
-                console.log('Listas: ', lists);
                 setListCards(lists);
             };
 
-            fetchLists();
+            fetchLists().then(() => {});
         }, [])
     );
 
