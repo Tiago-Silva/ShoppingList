@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
+import {themeType} from "../../global/theme";
 
 
 export const Container = styled.View`
@@ -8,7 +9,7 @@ export const Container = styled.View`
     
     justify-content: space-between;
     
-    background-color: ${props => props.theme.colors.background};
+    background-color: ${({ theme }: { theme: themeType }) => theme.colors.background};
 `;
 
 export const Footer = styled.View`

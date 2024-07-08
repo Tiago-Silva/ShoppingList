@@ -2,7 +2,8 @@ import styled from "styled-components/native";
 import {RFPercentage, RFValue} from "react-native-responsive-fontsize";
 import { FontAwesome6 } from '@expo/vector-icons';
 import {FlatList} from "react-native";
-import {Sugestion} from "./index";
+import {themeType} from "../../global/theme";
+import {Sugestion} from "../../components/interface/interface";
 
 export const Container = styled.View`
     flex: 1;
@@ -11,7 +12,7 @@ export const Container = styled.View`
 
     padding: ${RFPercentage(3)}px ${RFPercentage(2)}px ${RFPercentage(3)}px ${RFPercentage(2)}px;
     
-    background-color: ${props => props.theme.colors.background};
+    background-color: ${({ theme }: { theme: themeType }) => theme.colors.background};
 `;
 
 export const Title = styled.Text`
@@ -31,7 +32,7 @@ export const Footer = styled.View`
 
 export const Icon = styled(FontAwesome6)`
     font-size: ${RFPercentage(10)}px;
-    color: ${props => props.theme.colors.success};
+    color: ${({ theme }: { theme: themeType }) => theme.colors.success};
 `;
 
 export const WrapperList = styled.View`
@@ -59,8 +60,8 @@ export const WrapperSugestions = styled(
 
 export const Button = styled.TouchableOpacity`
     height: ${RFPercentage(4)}px;
-    border: 1px solid ${props => props.theme.colors.gray_01};
-    background-color: ${props => props.theme.colors.gray_01};
+    border: 1px solid ${({ theme }: { theme: themeType }) => theme.colors.gray_01};
+    background-color: ${({ theme }: { theme: themeType }) => theme.colors.gray_01};
     border-radius: ${RFValue(30)}px;
     justify-content: center;
     align-items: center;
@@ -70,7 +71,7 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const TitleButon = styled.Text`
-    color: ${props => props.theme.colors.text_bar};
+    color: ${({ theme }: { theme: themeType }) => theme.colors.text_bar};
     font-size: ${RFValue(12)}px;
     font-weight: bold;
 `;
