@@ -10,14 +10,6 @@ import {ShoppingService} from "../../components/service/shoppingService";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
-// const listCards: PropsListCard[] = [
-//     { title: 'Compras', items: 0.7 },
-//     { title: 'Mantimentos', items: 0.5 },
-//     { title: 'Fim de semana', items: 0.2 },
-//     { title: 'Sexta-feira', items: 0.9 },
-//     { title: 'Viagem', items: 0.4 },
-// ];
-
 export const Home = () => {
     const navigation = useNavigation<NavigationProp>();
     const [listCards, setListCards] = useState<ShoppingList[]>([]);
@@ -40,9 +32,11 @@ export const Home = () => {
 
     return (
         <S.Container>
-            {listCards.map((item, index) => (
-                <ListCard key={index} name={item.name} items={item.items} />
-            ))}
+            <S.Content>
+                {listCards.map((item, index) => (
+                    <ListCard key={index} name={item.name} items={item.items} />
+                ))}
+            </S.Content>
 
             <S.Footer>
                 <Button

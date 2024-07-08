@@ -4,12 +4,17 @@ import {themeType} from "../../global/theme";
 
 
 export const Container = styled.View`
-    flex: 1;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100%;
     padding: ${RFPercentage(3)}px ${RFPercentage(2)}px ${RFPercentage(3)}px ${RFPercentage(2)}px;
-    
-    justify-content: space-between;
-    
+    gap: ${RFPercentage(2)}px;
     background-color: ${({ theme }: { theme: themeType }) => theme.colors.background};
+`;
+
+export const Content = styled.View`
+    flex: 1;
+    gap: ${RFPercentage(2)}px;
 `;
 
 export const Footer = styled.View`
