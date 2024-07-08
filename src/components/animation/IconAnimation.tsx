@@ -3,6 +3,7 @@ import LottieView from 'lottie-react-native';
 
 const animations = {
     topperRabbit: require('../../../assets/animation/icons/topper-rabbit.json'),
+    checkList: require('../../../assets/animation/icons/checkList02.json'),
 };
 
 interface Props {
@@ -10,13 +11,15 @@ interface Props {
     width?: number;
     height?: number;
     top?: number;
+    marginBottom?: number;
 }
 
-const RabbitAnimation = ({
+const IconAnimation = ({
     animationKey = 'topperRabbit',
     width = 100,
     height = 100,
-    top
+    top,
+    marginBottom
 }: Props) => {
     return (
         <LottieView
@@ -27,7 +30,8 @@ const RabbitAnimation = ({
                 {
                     width: width,
                     height: height,
-                    top: top
+                    top: top,
+                    marginBottom: marginBottom
                 }
             }
             resizeMode={'cover'}
@@ -35,4 +39,4 @@ const RabbitAnimation = ({
     );
 };
 
-export default RabbitAnimation;
+export default IconAnimation;
