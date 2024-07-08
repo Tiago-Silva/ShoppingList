@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from "./styles";
+import IconAnimation from "../animation/IconAnimation";
 
 interface Props {
     isShow: boolean;
@@ -17,6 +18,12 @@ const Header = ({
                 <>
                     <S.Title>Minhas listas</S.Title>
                     <S.WrapperIcon>
+                        <IconAnimation
+                            animationKey={'topperRabbit'}
+                            width={50}
+                            height={50}
+                            top={-17}
+                        />
                         <S.Icon name="more-vertical" />
                     </S.WrapperIcon>
                 </>

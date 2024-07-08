@@ -8,6 +8,7 @@ import {ShoppingService} from "../../components/service/shoppingService";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import {useNavigation} from "@react-navigation/native";
+import IconAnimation from "../../components/animation/IconAnimation";
 
 const suggestions: Sugestion[] = [
     { id: 1, title: 'Compras' },
@@ -43,14 +44,19 @@ export const List = () => {
             name: inputValue,
             items: []
         }
-        const response = await ShoppingService.save(AddList);
+        await ShoppingService.save(AddList);
         navigation.navigate({name: 'Home', params: {} });
     }
 
     return (
         <S.Container>
             <S.Header>
-                <S.Icon name={'list-check'} />
+                <IconAnimation
+                    animationKey={'checkList'}
+                    width={200}
+                    height={100}
+                    marginBottom={20}
+                />
                 <Input
                     placeholder={'Nova Lista'}
                     value={inputValue}

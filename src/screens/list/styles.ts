@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 import {RFPercentage, RFValue} from "react-native-responsive-fontsize";
-import { FontAwesome6 } from '@expo/vector-icons';
 import {FlatList} from "react-native";
 import {themeType} from "../../global/theme";
 import {Sugestion} from "../../components/interface/interface";
@@ -28,11 +27,6 @@ export const Header = styled.View`
 
 export const Footer = styled.View`
     width: 100%;
-`;
-
-export const Icon = styled(FontAwesome6)`
-    font-size: ${RFPercentage(10)}px;
-    color: ${({ theme }: { theme: themeType }) => theme.colors.success};
 `;
 
 export const WrapperList = styled.View`
