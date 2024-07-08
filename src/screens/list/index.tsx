@@ -3,11 +3,11 @@ import React, {useState} from "react";
 import {Input} from "../../components/input";
 import Button from "../../components/button";
 import {ListRenderItemInfo} from "react-native";
-
-export interface Sugestion {
-    id: number;
-    title: string;
-}
+import {ShoppingList, Sugestion} from "../../components/interface/interface";
+import {ShoppingService} from "../../components/service/shoppingService";
+import {StackNavigationProp} from "@react-navigation/stack";
+import {RootStackParamList} from "../../types/types";
+import {useNavigation} from "@react-navigation/native";
 
 const suggestions: Sugestion[] = [
     { id: 1, title: 'Compras' },
@@ -20,8 +20,11 @@ const suggestions: Sugestion[] = [
     { id: 8, title: 'Farmácia' },
 ];
 
+type NavigationProp = StackNavigationProp<RootStackParamList>;
+
 export const List = () => {
     const [inputValue, setInputValue] = useState('')
+    const navigation = useNavigation<NavigationProp>();
 
     const handleSelectSugestion = (value: string) => {
         setInputValue(value);
@@ -33,6 +36,15 @@ export const List = () => {
                 <S.TitleButon>{item.title}</S.TitleButon>
             </S.Button>
         )
+    }
+
+    const handleCreateList = async () => {
+        const AddList: ShoppingList = {
+            name: inputValue,
+            items: []
+        }
+        const response = await ShoppingService.save(AddList);
+        navigation.navigate({name: 'Home', params: {} });
     }
 
     return (
@@ -55,7 +67,7 @@ export const List = () => {
             </S.Header>
 
             <S.Footer>
-                <Button title={'CRIAR'} handleOnPress={() => {}} />
+                <Button title={'CRIAR'} handleOnPress={handleCreateList} />
             </S.Footer>
         </S.Container>
     );
