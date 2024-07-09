@@ -4,13 +4,17 @@ import {Feather} from "@expo/vector-icons";
 import {themeType} from "../../global/theme";
 
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
     height: ${RFPercentage(14)}px;
     padding: ${RFPercentage(3)}px ${RFPercentage(2)}px ${RFPercentage(3)}px ${RFPercentage(2)}px;
     
     background-color: ${({ theme }: { theme: themeType }) => theme.colors.background_card};
     border-radius: 10px;
     gap: 15px
+`;
+
+export const Wrapper = styled.TouchableOpacity`
+
 `;
 
 export const Header = styled.View`

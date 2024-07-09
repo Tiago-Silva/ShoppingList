@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import {RFPercentage, RFValue} from "react-native-responsive-fontsize";
 import {FlatList} from "react-native";
 import {themeType} from "../../global/theme";
-import {Sugestion} from "../../components/interface/interface";
+import {Sugestion} from "../../interface/interface";
 
 export const Container = styled.View`
     flex: 1;
