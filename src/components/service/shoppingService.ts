@@ -1,4 +1,4 @@
-import {ShoppingList} from "../interface/interface";
+import {ShoppingList} from "../../interface/interface";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 

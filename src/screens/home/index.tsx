@@ -5,7 +5,7 @@ import {RootStackParamList} from "../../types/types";
 import Button from "../../components/button";
 import ListCard from "../../components/ListCard";
 import {useCallback, useState} from "react";
-import {ShoppingList} from "../../components/interface/interface";
+import {ShoppingList} from "../../interface/interface";
 import {ShoppingService} from "../../components/service/shoppingService";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;

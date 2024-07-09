@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {Input} from "../../components/input";
 import Button from "../../components/button";
 import {ListRenderItemInfo} from "react-native";
-import {ShoppingList, Sugestion} from "../../components/interface/interface";
+import {ShoppingList, Sugestion} from "../../interface/interface";
 import {ShoppingService} from "../../components/service/shoppingService";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
