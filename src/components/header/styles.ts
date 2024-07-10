@@ -3,7 +3,13 @@ import {RFPercentage} from "react-native-responsive-fontsize";
 import {Feather} from "@expo/vector-icons";
 import {themeType} from "../../global/theme";
 
-export const Container = styled.View`
+type ThemeColors = 'background_header' | 'background_card';
+
+interface ContainerProps {
+    $background: ThemeColors;
+}
+
+export const Container = styled.View<ContainerProps>`
     display: flex;
     flex-direction: row;
     
@@ -13,7 +19,7 @@ export const Container = styled.View`
     width: 100%;
     height: ${RFPercentage(10)}px;
 
-    background-color: ${({ theme }: { theme: themeType }) => theme.colors.background_header};
+    background-color: ${({ theme, $background }: { theme: themeType; $background: ThemeColors }) => theme.colors[$background]};
 `;
 
 export const Title = styled.Text`

@@ -9,11 +9,13 @@ type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 interface Props {
     isShow: boolean;
     handleNavigation?: () => void;
+    background?: string;
 }
 
 const Header = ({
     isShow,
-    handleNavigation
+    handleNavigation,
+    background = 'background_header'
 }: Props) => {
 
     const route = useRoute<HeaderRouteProp>();
@@ -42,7 +44,7 @@ const Header = ({
     };
 
     return (
-        <S.Container>
+        <S.Container $background={background}>
             {renderHeaderContent()}
         </S.Container>
     );
