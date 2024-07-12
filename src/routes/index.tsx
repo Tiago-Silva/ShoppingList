@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import {List} from "../screens/list";
 import Header from "../components/header";
 import CheckItems from "../screens/checkItems";
+import AddItems from "../screens/addItems";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,22 @@ export const Routes = () => {
                 <Stack.Screen
                     name="CheckItems"
                     component={CheckItems}
+                    options={{
+                        headerShown: true,
+                        header: ({ navigation, route, options, back }) => {
+                            return (
+                                <Header
+                                    isShow={true}
+                                    handleNavigation={navigation.goBack}
+                                    background={'background_card'}
+                                />
+                            )
+                        }
+                    }}
+                />
+                <Stack.Screen
+                    name="AddItems"
+                    component={AddItems}
                     options={{
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {

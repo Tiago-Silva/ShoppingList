@@ -5,6 +5,7 @@ export type RootStackParamList = {
     List: {}; // {} parametros ou undefined
     Home: {};
     CheckItems: {};
+    AddItems: {};
     // Adicione outras rotas aqui...
 }
 
