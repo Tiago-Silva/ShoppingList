@@ -3,7 +3,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {List} from "../screens/list";
 import Header from "../components/header";
-import Items from "../screens/items";
+import CheckItems from "../screens/checkItems";
 
 const Stack = createStackNavigator();
 
@@ -33,7 +33,7 @@ export const Routes = () => {
                 />
                 <Stack.Screen
                     name="Items"
-                    component={Items}
+                    component={CheckItems}
                     options={{
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {

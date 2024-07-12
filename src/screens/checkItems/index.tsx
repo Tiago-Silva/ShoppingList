@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 
-const Items = () => {
+const CheckItems = () => {
     return (
         <S.Container>
             <S.Title>Lista de items</S.Title>
@@ -9,4 +9,4 @@ const Items = () => {
     );
 };
 
-export default Items;
+export default CheckItems;
