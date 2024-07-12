@@ -4,7 +4,7 @@ import {Item} from "../interface/interface";
 export type RootStackParamList = {
     List: {}; // {} parametros ou undefined
     Home: {};
-    Items: {};
+    CheckItems: {};
     // Adicione outras rotas aqui...
 }
 

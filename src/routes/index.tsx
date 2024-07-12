@@ -32,7 +32,7 @@ export const Routes = () => {
                     }}
                 />
                 <Stack.Screen
-                    name="Items"
+                    name="CheckItems"
                     component={CheckItems}
                     options={{
                         headerShown: true,

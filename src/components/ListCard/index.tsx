@@ -17,7 +17,7 @@ const ListCard = ({
     const navigation = useNavigation<NavigationProp>();
 
     const handleShowItems = () => {
-        navigation.navigate({name: 'Items', params: {name, items} });
+        navigation.navigate({name: 'CheckItems', params: {name, items} });
     }
 
     const handleUpdateCard = () => {
