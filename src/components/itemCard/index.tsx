@@ -17,16 +17,10 @@ const ItemCard = ({
     const handleAnimationIcon = () => {
         if (isPlaying) {
             setIsPlaying(!isPlaying);
-            animationRef.current?.play();
-            setTimeout(() => {
-                animationRef.current?.pause();
-            }, 2000);
+            animationRef.current?.play(20,50);
         } else {
             setIsPlaying(!isPlaying);
-            animationRef.current?.play();
-            setTimeout(() => {
-                animationRef.current?.pause();
-            }, 1000);
+            animationRef.current?.play(1,20);
         }
     };
 
