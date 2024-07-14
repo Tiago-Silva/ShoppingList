@@ -4,6 +4,7 @@ import LottieView from 'lottie-react-native';
 const animations = {
     topperRabbit: require('../../../assets/animation/icons/topper-rabbit.json'),
     checkList: require('../../../assets/animation/icons/checkList02.json'),
+    checkCircle: require('../../../assets/animation/icons/checkCircle.json'),
 };
 
 interface Props {
@@ -12,6 +13,8 @@ interface Props {
     height?: number;
     top?: number;
     marginBottom?: number;
+    animationRef?: React.RefObject<LottieView>;
+    isLoop?: boolean;
 }
 
 const IconAnimation = ({
@@ -19,13 +22,16 @@ const IconAnimation = ({
     width = 100,
     height = 100,
     top,
-    marginBottom
+    marginBottom,
+    animationRef,
+    isLoop = true
 }: Props) => {
     return (
         <LottieView
             source={animations[animationKey]}
+            ref={animationRef}
             autoPlay
-            loop
+            loop={isLoop}
             style={
                 {
                     width: width,
