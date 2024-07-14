@@ -4,6 +4,7 @@ export interface Item {
     name: string;
     quantity: number;
     icon?: string;
+    checked?: boolean;
 }
 
 export interface ShoppingList {

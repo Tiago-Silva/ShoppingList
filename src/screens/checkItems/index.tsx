@@ -8,6 +8,7 @@ import Button from "../../components/button";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {Item} from "../../interface/interface";
 import ItemCard from "../../components/itemCard";
+import {ListRenderItemInfo} from "react-native";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
@@ -125,6 +126,14 @@ const CheckItems = () => {
         navigation.navigate({name: 'AddItems', params: {}});
     }
 
+    const handleRenderItem = ({ item }: ListRenderItemInfo<Item>) => {
+        return (
+            <ItemCard
+                item={item}
+            />
+        )
+    }
+
     return (
         <S.Container>
             <S.Header>
@@ -133,12 +142,11 @@ const CheckItems = () => {
                     width={350}
                     color={theme.colors.text_bar}
                 />
-                {listItems.map((item, index) => (
-                    <ItemCard
-                        key={index}
-                        item={item}
-                    />
-                ))}
+                <S.WrapperList
+                    data={listItems}
+                    keyExtractor={(item: Item) => item.name}
+                    renderItem={handleRenderItem}
+                />
             </S.Header>
             <S.Footer>
                 <Button
