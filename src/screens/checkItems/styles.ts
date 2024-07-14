@@ -24,9 +24,3 @@ export const Footer = styled.View`
 
     padding: ${RFPercentage(3)}px ${RFPercentage(2)}px ${RFPercentage(3)}px ${RFPercentage(2)}px;
 `;
-
-export const Title = styled.Text`
-    color: ${({ theme }: any) => theme.colors.shape};
-    font-size: ${RFPercentage(3)}px;
-    text-align: center;
-`;
