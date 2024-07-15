@@ -1,5 +1,5 @@
 import {ItemData} from "../../../interface/interface";
-import {ActionTypes, AddItemToListAction} from "./type";
+import {ActionTypes, AddItemToListAction, InputValue} from "./type";
 
 
 export function addItemToList (item: ItemData): AddItemToListAction {
@@ -32,5 +32,14 @@ export function reduceItemFromList (item: ItemData): AddItemToListAction {
 export function clearList () {
     return {
         type: ActionTypes.CLEAR_LIST,
+    }
+}
+
+export function inputValue (value: string): InputValue {
+    return {
+        type: ActionTypes.INPUT_VALUE,
+        payload: {
+            value
+        }
     }
 }

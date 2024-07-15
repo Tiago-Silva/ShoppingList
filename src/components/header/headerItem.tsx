@@ -1,6 +1,8 @@
 import React from 'react';
 import * as S from "./styles";
 import {Input} from "../input";
+import {inputValue} from "../../store/modules/item/actions";
+import {useAppDispatch} from "../../store/modules/hooks";
 
 interface Props {
     handleNavigation?: () => void;
@@ -11,6 +13,11 @@ const HeaderItem = ({
     handleNavigation,
     background = 'background_header'
 }: Props) => {
+    const dispatch = useAppDispatch();
+
+    const handleInputChanges = (value: string) => {
+      dispatch(inputValue(value));
+    };
 
     return (
         <S.Container $background={background}>
@@ -20,6 +27,7 @@ const HeaderItem = ({
                 height={4}
                 width={44}
                 fontSize={12}
+                onChangeText={handleInputChanges}
             />
         </S.Container>
     );

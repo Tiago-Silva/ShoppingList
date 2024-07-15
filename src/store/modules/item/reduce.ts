@@ -1,9 +1,10 @@
 import { Reducer } from "redux";
 import { produce } from 'immer';
-import { ActionTypes, AddItemToListAction, ListActions, IListState } from "./type";
+import {ActionTypes, AddItemToListAction, ListActions, IListState, InputValue} from "./type";
 
 const INITIAL_STATE: IListState = {
-    items: []
+    items: [],
+    inputValue: ''
 }
 
 export const cart: Reducer<IListState, ListActions> = (state = INITIAL_STATE, actions) => {
@@ -60,6 +61,11 @@ export const cart: Reducer<IListState, ListActions> = (state = INITIAL_STATE, ac
             }
             case ActionTypes.CLEAR_LIST: {
                 draft.items = [];
+                break;
+            }
+            case ActionTypes.INPUT_VALUE: {
+                const actionWithPayload = actions as InputValue;
+                draft.inputValue = actionWithPayload.payload.value;
                 break;
             }
             default:
