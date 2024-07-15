@@ -11,7 +11,7 @@ export function addItemToList (item: ItemData): AddItemToListAction {
     }
 }
 
-export function removeItemFromCart (item: ItemData): AddItemToListAction {
+export function removeItemFromList (item: ItemData): AddItemToListAction {
     return {
         type: ActionTypes.REMOVE_ITEM_FROM_LIST,
         payload: {
@@ -20,7 +20,7 @@ export function removeItemFromCart (item: ItemData): AddItemToListAction {
     }
 }
 
-export function reduceItemFromCart (item: ItemData): AddItemToListAction {
+export function reduceItemFromList (item: ItemData): AddItemToListAction {
     return {
         type: ActionTypes.REDUCE_ITEM_FROM_LIST,
         payload: {
@@ -29,7 +29,7 @@ export function reduceItemFromCart (item: ItemData): AddItemToListAction {
     }
 }
 
-export function clearCart () {
+export function clearList () {
     return {
         type: ActionTypes.CLEAR_LIST,
     }
