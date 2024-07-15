@@ -1,6 +1,6 @@
 
 
-export interface Item {
+export interface ItemData {
     name: string;
     quantity: number;
     icon?: string;
@@ -9,7 +9,7 @@ export interface Item {
 
 export interface ShoppingList {
     name: string;
-    items: Item[];
+    items: ItemData[];
 }
 
 export interface Sugestion {

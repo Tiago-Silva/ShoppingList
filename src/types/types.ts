@@ -1,4 +1,4 @@
-import {Item} from "../interface/interface";
+import {ItemData} from "../interface/interface";
 
 
 export type RootStackParamList = {
@@ -11,5 +11,5 @@ export type RootStackParamList = {
 
 export type HeaderRouteParams = {
     name?: string;
-    items?: Item[];
+    items?: ItemData[];
 };

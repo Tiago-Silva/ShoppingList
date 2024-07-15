@@ -6,14 +6,14 @@ import {RouteProp, useNavigation, useRoute} from "@react-navigation/native";
 import {HeaderRouteParams, RootStackParamList} from "../../types/types";
 import Button from "../../components/button";
 import {StackNavigationProp} from "@react-navigation/stack";
-import {Item} from "../../interface/interface";
+import {ItemData} from "../../interface/interface";
 import ItemCard from "../../components/itemCard";
 import {ListRenderItemInfo} from "react-native";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 
-const listItems: Item[] = [
+const listItems: ItemData[] = [
     {
         name: 'Arroz',
         quantity: 1,
@@ -126,7 +126,7 @@ const CheckItems = () => {
         navigation.navigate({name: 'AddItems', params: {}});
     }
 
-    const handleRenderItem = ({ item }: ListRenderItemInfo<Item>) => {
+    const handleRenderItem = ({ item }: ListRenderItemInfo<ItemData>) => {
         return (
             <ItemCard
                 item={item}
@@ -144,7 +144,7 @@ const CheckItems = () => {
                 />
                 <S.WrapperList
                     data={listItems}
-                    keyExtractor={(item: Item) => item.name}
+                    keyExtractor={(item: ItemData) => item.name}
                     renderItem={handleRenderItem}
                 />
             </S.Header>

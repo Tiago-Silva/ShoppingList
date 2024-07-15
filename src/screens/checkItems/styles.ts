@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import {RFPercentage} from "react-native-responsive-fontsize";
 import {themeType} from "../../global/theme";
 import {FlatList} from "react-native";
-import {Item} from "../../interface/interface";
+import {ItemData} from "../../interface/interface";
 
 
 export const Container = styled.View`
@@ -18,7 +18,7 @@ export const Header = styled.View`
 `;
 
 export const WrapperList = styled(
-    FlatList as new () => FlatList<Item>
+    FlatList as new () => FlatList<ItemData>
 ).attrs({
     showsVerticalScrollIndicator: false,
     containerStyle: {

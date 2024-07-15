@@ -2,10 +2,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import * as S from './styles';
 import IconAnimation from "../animation/IconAnimation";
 import LottieView from "lottie-react-native";
-import {Item} from "../../interface/interface";
+import {ItemData} from "../../interface/interface";
 
 interface Props {
-    item: Item
+    item: ItemData
 }
 
 const ItemCard = ({
