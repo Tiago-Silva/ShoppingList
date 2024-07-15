@@ -5,6 +5,7 @@ import {List} from "../screens/list";
 import Header from "../components/header";
 import CheckItems from "../screens/checkItems";
 import AddItems from "../screens/addItems";
+import HeaderItem from "../components/header/headerItem";
 
 const Stack = createStackNavigator();
 
@@ -55,8 +56,7 @@ export const Routes = () => {
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {
                             return (
-                                <Header
-                                    isShow={true}
+                                <HeaderItem
                                     handleNavigation={navigation.goBack}
                                     background={'background_card'}
                                 />
