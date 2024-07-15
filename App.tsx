@@ -1,12 +1,11 @@
 import { StatusBar } from 'react-native';
-import {ThemeProvider} from "styled-components";
-import {darkTheme} from "./src/global/theme";
 import {Routes} from "./src/routes";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {Providers} from "./src/providers/Providers";
 
 export default function App() {
     return (
-        <ThemeProvider theme={darkTheme}>
+        <Providers>
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <StatusBar
                     backgroundColor='#2a2e34'
@@ -14,6 +13,6 @@ export default function App() {
                 />
                 <Routes />
             </GestureHandlerRootView>
-        </ThemeProvider>
+        </Providers>
     );
 }
