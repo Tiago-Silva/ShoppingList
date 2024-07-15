@@ -28,7 +28,7 @@ export const WrapperList = styled(
         paddingLeft: RFPercentage(2)
     },
     contentContainerStyle: {
-        gap: RFPercentage(1)
+        gap: RFPercentage(0.5)
     }
 })`   
     margin-top: ${RFPercentage(2)}px;

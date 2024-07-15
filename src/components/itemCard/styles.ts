@@ -13,6 +13,6 @@ export const WrapperIcon = styled.TouchableOpacity`
 
 export const Title = styled.Text`
     color: ${({ theme }: any) => theme.colors.shape};
-    font-size: ${RFPercentage(3)}px;
+    font-size: ${RFPercentage(2)}px;
     text-align: center;
 `;

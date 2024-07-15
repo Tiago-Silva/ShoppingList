@@ -34,8 +34,8 @@ const ItemCard = ({
                 <IconAnimation
                     animationKey={'checkCircle'}
                     animationRef={animationRef}
-                    width={50}
-                    height={50}
+                    width={40}
+                    height={40}
                     isLoop={false}
                 />
             </S.WrapperIcon>
