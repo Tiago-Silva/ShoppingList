@@ -7,15 +7,13 @@ import {Item} from "../../interface/interface";
 
 export const Container = styled.View`
     flex: 1;
-    
-    justify-content: space-between;
-    
+    flex-direction: column;
     background-color: ${({ theme }: { theme: themeType }) => theme.colors.background};
 `;
 
 export const Header = styled.View`
-    padding: ${RFPercentage(3)}px ${RFPercentage(2)}px ${RFPercentage(3)}px ${RFPercentage(2)}px;
-    
+    flex: 1;
+    padding: ${RFPercentage(3)}px ${RFPercentage(2)}px;
     background-color: ${({ theme }: any) => theme.colors.background_card};
 `;
 
@@ -25,12 +23,12 @@ export const WrapperList = styled(
     showsVerticalScrollIndicator: false,
     containerStyle: {
         paddingRight: RFPercentage(2),
-        paddingLeft: RFPercentage(2)
+        paddingLeft: RFPercentage(2),
     },
     contentContainerStyle: {
-        gap: RFPercentage(0.5)
+        paddingBottom: RFPercentage(3),
     }
-})`   
+})`
     margin-top: ${RFPercentage(2)}px;
     width: 100%;
 `;
@@ -39,6 +37,6 @@ export const Footer = styled.View`
     width: 100%;
     flex-direction: row;
     justify-content: flex-end;
-
-    padding: ${RFPercentage(3)}px ${RFPercentage(2)}px ${RFPercentage(3)}px ${RFPercentage(2)}px;
+    padding: ${RFPercentage(3)}px ${RFPercentage(2)}px;
+    background-color: ${({ theme }: { theme: themeType }) => theme.colors.background_card};
 `;
