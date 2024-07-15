@@ -6,6 +6,7 @@ import {ShoppingList} from "../../interface/interface";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import {useNavigation} from "@react-navigation/native";
+import {ShoppingService} from "../service/shoppingService";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -21,7 +22,7 @@ const ListCard = ({
     }
 
     const handleUpdateCard = () => {
-        //TODO: Implementar a navegação para a tela de edição
+        ShoppingService.delete({name, items}).then(() => {});
     }
 
     return (

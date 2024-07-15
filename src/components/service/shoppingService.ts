@@ -22,5 +22,16 @@ export const ShoppingService = {
         } catch (error) {
             console.error('Erro ao buscar a lista no AsyncStorage', error);
         }
+    },
+
+    delete: async (list: ShoppingList) => {
+        try {
+            const shoppingList = await AsyncStorage.getItem('shoppingList');
+            let listsArray = shoppingList ? JSON.parse(shoppingList) : [];
+            listsArray = listsArray.filter((item: ShoppingList) => item.name !== list.name);
+            await AsyncStorage.setItem('shoppingList', JSON.stringify(listsArray));
+        } catch (error) {
+            console.error('Erro ao deletar a lista no AsyncStorage', error);
+        }
     }
 }
