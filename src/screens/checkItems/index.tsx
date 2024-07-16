@@ -119,11 +119,10 @@ const listItems: ItemData[] = [
 const CheckItems = () => {
     const theme = useTheme();
     const navigation = useNavigation<NavigationProp>();
-    const route = useRoute<HeaderRouteProp>();
-    const items = route.params?.items || [];
+    const { items = [], name = '' } = useRoute<HeaderRouteProp>().params || {};
 
     const handleNavigationAddItem = () => {
-        navigation.navigate({name: 'AddItems', params: {}});
+        navigation.navigate({name: 'AddItems', params: {name}});
     }
 
     const handleRenderItem = ({ item }: ListRenderItemInfo<ItemData>) => {
@@ -143,7 +142,7 @@ const CheckItems = () => {
                     color={theme.colors.text_bar}
                 />
                 <S.WrapperList
-                    data={listItems}
+                    data={items.length > 0 ? items : []}
                     keyExtractor={(item: ItemData) => item.name}
                     renderItem={handleRenderItem}
                 />

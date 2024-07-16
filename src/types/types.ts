@@ -1,11 +1,11 @@
-import {ItemData} from "../interface/interface";
+import {ItemData, ShoppingList} from "../interface/interface";
 
 
 export type RootStackParamList = {
     List: {}; // {} parametros ou undefined
     Home: {};
-    CheckItems: {};
-    AddItems: {};
+    CheckItems: ShoppingList;
+    AddItems: {name: string};
     // Adicione outras rotas aqui...
 }
 
