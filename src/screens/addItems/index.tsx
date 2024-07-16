@@ -21,12 +21,14 @@ const AddItems = () => {
 
     return (
         <S.Container>
-            <S.LineItem>
-                <S.WrapperIcon onPress={handleAddItem}>
-                    <S.Icon name='plus-circle'/>
-                </S.WrapperIcon>
-                <S.Title>{inputValue}</S.Title>
-            </S.LineItem>
+            {inputValue && (
+                <S.LineItem>
+                    <S.WrapperIcon onPress={handleAddItem}>
+                        <S.Icon name='plus-circle'/>
+                    </S.WrapperIcon>
+                    <S.Title>{inputValue}</S.Title>
+                </S.LineItem>
+            )}
         </S.Container>
     );
 };
