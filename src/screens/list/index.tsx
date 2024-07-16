@@ -4,7 +4,7 @@ import {Input} from "../../components/input";
 import Button from "../../components/button";
 import {ListRenderItemInfo} from "react-native";
 import {ShoppingList, Sugestion} from "../../interface/interface";
-import {ShoppingService} from "../../components/service/shoppingService";
+import {ShoppingService} from "../../service/shoppingService";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import {useNavigation} from "@react-navigation/native";

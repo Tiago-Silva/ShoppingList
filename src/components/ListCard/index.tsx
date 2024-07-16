@@ -6,7 +6,7 @@ import {ShoppingList} from "../../interface/interface";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import {useNavigation} from "@react-navigation/native";
-import {ShoppingService} from "../service/shoppingService";
+import {ShoppingService} from "../../service/shoppingService";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
