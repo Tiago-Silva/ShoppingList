@@ -15,7 +15,7 @@ export const ShoppingService = {
         }
     },
 
-    update: async (listName: string, newItem: ItemData) => {
+    addItem: async (listName: string, newItem: ItemData) => {
         try {
             const shoppingList = await AsyncStorage.getItem('shoppingList');
             let listsArray: ShoppingList[] = shoppingList ? JSON.parse(shoppingList) : [];

@@ -16,7 +16,15 @@ const AddItems = () => {
             return;
         }
 
-       await ShoppingService.update(name, {name: inputValue, quantity: 1});
+       await ShoppingService.addItem(
+           name,
+           {
+               name: inputValue,
+               quantity: 1,
+                icon: '',
+                checked: false
+           }
+       );
     }
 
     return (
