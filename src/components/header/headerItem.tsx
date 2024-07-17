@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from "./styles";
 import {Input} from "../input";
-import {inputValue} from "../../store/modules/item/actions";
+import {inputValue} from "../../store/modules/shoppingList/actions";
 import {useAppDispatch} from "../../store/modules/hooks";
 
 interface Props {
@@ -23,7 +23,7 @@ const HeaderItem = ({
         <S.Container $background={background}>
             <S.Icon name="arrow-left" onPress={handleNavigation}/>
             <Input
-                placeholder={'Nome do item'}
+                placeholder={'Nome do shoppingList'}
                 height={4}
                 width={44}
                 fontSize={12}

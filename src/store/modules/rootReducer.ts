@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { cart } from './item/reduce';
+import { cart } from './shoppingList/reduce';
 
 
 export default combineReducers({

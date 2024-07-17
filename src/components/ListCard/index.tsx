@@ -35,7 +35,7 @@ const ListCard = ({
             </S.Header>
             <S.Footer>
                 <Progress.Bar
-                    progress={items.length}
+                    progress={items.length > 0 ? items.filter((item) => item.checked).length / items.length : 0}
                     width={310}
                     color={theme.colors.text_bar}
                 />
