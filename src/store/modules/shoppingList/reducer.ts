@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { produce } from 'immer';
-import {ActionTypes, AddItemToListAction, ListActions, IListState, InputValue, AddShoppingListAction} from "./type";
+import {ActionTypes, ListActions, IListState, InputValue, AddShoppingListAction} from "./type";
 
 const INITIAL_STATE: IListState = {
     shoppingArrayList: [],
@@ -13,10 +13,6 @@ export const cart: Reducer<IListState, ListActions> = (state = INITIAL_STATE, ac
             case ActionTypes.ADD_SHOPPING_LIST: {
                 const actionWithPayload = actions as AddShoppingListAction;
                 const { shoppingList } = actionWithPayload.payload;
-
-                const listIndex = draft.shoppingArrayList.findIndex(list =>
-                    list.name === shoppingList.name
-                );
 
                 draft.shoppingArrayList.push(shoppingList);
 

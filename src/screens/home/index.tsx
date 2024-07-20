@@ -1,33 +1,46 @@
 import * as S from "./styles";
-import {useFocusEffect, useNavigation} from "@react-navigation/native";
+import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import Button from "../../components/button";
 import ListCard from "../../components/ListCard";
-import {useCallback, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {ShoppingList} from "../../interface/interface";
 import {ShoppingService} from "../../service/shoppingService";
+import {useAppDispatch} from "../../store/modules/hooks";
+import {useSelector} from "react-redux";
+import {IState} from "../../store/modules/shoppingList/type";
+import {addShoppingList} from "../../store/modules/shoppingList/actions";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
 export const Home = () => {
     const navigation = useNavigation<NavigationProp>();
-    const [listCards, setListCards] = useState<ShoppingList[]>([]);
+    const dispatch = useAppDispatch();
+    const listCards = useSelector<IState, ShoppingList[]>((state) => state.cart.shoppingArrayList);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const handleNavigation = () => {
         navigation.navigate({name: 'List', params: {} });
     }
 
-    useFocusEffect(
-        useCallback(() => {
-            const fetchLists = async () => {
-                const lists = await ShoppingService.getAll();
-                setListCards(lists);
-            };
+    const fetchLists = useCallback(async () => {
+        const lists = await ShoppingService.getAll();
+        if (lists.length > 0) {
+            lists.forEach((list: ShoppingList) => {
+                if (list.name.length > 0) {
+                    dispatch(addShoppingList(list));
+                }
+            });
+        }
+        setIsLoaded(true);
+    }, [dispatch]);
 
+    useEffect(() => {
+        if (!isLoaded) {
             fetchLists().then(() => {});
-        }, [])
-    );
+        }
+    }, [isLoaded, fetchLists]);
 
     return (
         <S.Container>
