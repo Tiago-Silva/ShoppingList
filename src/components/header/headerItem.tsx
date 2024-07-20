@@ -24,7 +24,7 @@ const HeaderItem = ({
         <S.Container $background={background}>
             <S.Icon name="arrow-left" onPress={handleNavigation}/>
             <Input
-                placeholder={'Nome do shoppingList'}
+                placeholder={'Nome do item'}
                 height={4}
                 width={44}
                 fontSize={12}
