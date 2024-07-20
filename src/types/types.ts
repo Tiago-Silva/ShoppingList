@@ -1,4 +1,4 @@
-import {ItemData, ShoppingList} from "../interface/interface";
+import {ShoppingList} from "../interface/interface";
 
 
 export type RootStackParamList = {
@@ -6,7 +6,6 @@ export type RootStackParamList = {
     Home: {};
     CheckItems: ShoppingList;
     AddItems: {name: string};
-    // Adicione outras rotas aqui...
 }
 
 export type HeaderRouteParams = {
