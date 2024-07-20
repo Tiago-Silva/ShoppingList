@@ -138,7 +138,11 @@ const CheckItems = () => {
         <S.Container>
             <S.Header>
                 <Progress.Bar
-                    progress={items.filter((item) => item.checked).length / items.length}
+                    progress={
+                        items.length > 0
+                            ? items.filter((item) => item.checked).length / items.length
+                            : 0
+                    }
                     width={350}
                     color={theme.colors.text_bar}
                 />
