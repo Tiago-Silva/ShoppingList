@@ -21,6 +21,7 @@ const CheckItems = () => {
     const name = useRoute<HeaderRouteProp>().params?.name || '';
     const listCards = useSelector<IState, ShoppingList[]>((state) => state.cart.shoppingArrayList);
     const currentList = listCards.find((list) => list.name === name);
+    const currentItems = currentList ? currentList.items.length > 0 ? currentList.items : [] : [];
 
     const handleNavigationAddItem = () => {
         navigation.navigate({name: 'AddItems', params: {name}});
@@ -41,15 +42,15 @@ const CheckItems = () => {
             <S.Header>
                 <Progress.Bar
                     progress={
-                        currentList
-                            ? currentList.items.filter((item) => item.checked).length / currentList.items.length
+                        currentItems.length > 0
+                            ? currentItems.filter((item) => item.checked).length / currentItems.length
                             : 0
                     }
                     width={350}
                     color={theme.colors.text_bar}
                 />
                 <S.WrapperList
-                    data={currentList ? currentList.items : []}
+                    data={currentItems.length > 0 ? currentItems : []}
                     keyExtractor={(item: ItemData) => item.name}
                     renderItem={handleRenderItem}
                 />
