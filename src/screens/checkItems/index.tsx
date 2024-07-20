@@ -128,6 +128,7 @@ const CheckItems = () => {
     const handleRenderItem = ({ item }: ListRenderItemInfo<ItemData>) => {
         return (
             <ItemCard
+                name={name}
                 item={item}
             />
         )

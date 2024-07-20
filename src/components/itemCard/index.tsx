@@ -5,10 +5,12 @@ import LottieView from "lottie-react-native";
 import {ItemData} from "../../interface/interface";
 
 interface Props {
-    item: ItemData
+    name: string;
+    item: ItemData;
 }
 
 const ItemCard = ({
+    name,
     item
 }: Props) => {
     const animationRef = useRef<LottieView>(null);
