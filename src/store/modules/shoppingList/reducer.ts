@@ -41,6 +41,10 @@ export const cart: Reducer<IListState, ListActions> = (state = INITIAL_STATE, ac
                 draft.inputValue = actionWithPayload.payload.value;
                 break;
             }
+            case ActionTypes.CLEAR_INPUT_VALUE: {
+                draft.inputValue = '';
+                break;
+            }
             default:
                 return draft;
         }

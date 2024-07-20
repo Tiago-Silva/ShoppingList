@@ -1,4 +1,4 @@
-import {ItemData, ShoppingList} from "../../../interface/interface";
+import {ShoppingList} from "../../../interface/interface";
 import {ActionTypes, AddShoppingListAction, InputValue} from "./type";
 
 export const addShoppingList = (list: ShoppingList): AddShoppingListAction => ({
@@ -23,5 +23,11 @@ export function inputValue (value: string): InputValue {
         payload: {
             value
         }
+    }
+}
+
+export function clearInputValue () {
+    return {
+        type: ActionTypes.CLEAR_INPUT_VALUE
     }
 }

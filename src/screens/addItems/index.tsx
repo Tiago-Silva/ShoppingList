@@ -1,13 +1,15 @@
 import React from 'react';
 import * as S from './styles';
-import {useAppSelector} from "../../store/modules/hooks";
+import {useAppDispatch, useAppSelector} from "../../store/modules/hooks";
 import {ShoppingService} from "../../service/shoppingService";
 import {RouteProp, useRoute} from "@react-navigation/native";
 import {HeaderRouteParams} from "../../types/types";
+import {clearInputValue, updateShoppingList} from "../../store/modules/shoppingList/actions";
 
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 
 const AddItems = () => {
+    const dispatch = useAppDispatch();
     const inputValue = useAppSelector((state) => state.cart?.inputValue);
     const name = useRoute<HeaderRouteProp>().params?.name || '';
 
@@ -16,15 +18,18 @@ const AddItems = () => {
             return;
         }
 
-       await ShoppingService.addItem(
-           name,
-           {
-               name: inputValue,
-               quantity: 1,
+        await ShoppingService.addItem(
+            name,
+            {
+                name: inputValue,
+                quantity: 1,
                 icon: '',
                 checked: false
-           }
-       );
+            }
+        );
+        dispatch(clearInputValue());
+        const updatedShoppingList = await ShoppingService.getShoppingList(name);
+        dispatch(updateShoppingList(updatedShoppingList));
     }
 
     return (
