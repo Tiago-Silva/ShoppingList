@@ -3,6 +3,9 @@ import * as S from './styles';
 import IconAnimation from "../animation/IconAnimation";
 import LottieView from "lottie-react-native";
 import {ItemData} from "../../interface/interface";
+import {ShoppingService} from "../../service/shoppingService";
+import {useAppDispatch} from "../../store/modules/hooks";
+import {updateShoppingList} from "../../store/modules/shoppingList/actions";
 
 interface Props {
     name: string;
@@ -13,6 +16,7 @@ const ItemCard = ({
     name,
     item
 }: Props) => {
+    const dispatch = useAppDispatch();
     const animationRef = useRef<LottieView>(null);
     const [isPlaying, setIsPlaying] = useState(item.checked || false);
 
@@ -26,6 +30,16 @@ const ItemCard = ({
         }
     };
 
+    const handleUpdateItem = async () => {
+        handleAnimationIcon();
+
+        const updatedItem = { ...item, checked: isPlaying }
+        await ShoppingService.updateItem(name, updatedItem);
+
+        const updatedShoppingList = await ShoppingService.getShoppingList(name);
+        dispatch(updateShoppingList(updatedShoppingList));
+    }
+
     useEffect(() => {
         handleAnimationIcon();
     }, []);
@@ -33,7 +47,7 @@ const ItemCard = ({
     return (
         <S.Container>
             <S.RightContainer>
-                <S.WrapperIcon onPress={handleAnimationIcon}>
+                <S.WrapperIcon onPress={handleUpdateItem}>
                     <IconAnimation
                         animationKey={'checkCircle'}
                         animationRef={animationRef}
