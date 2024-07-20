@@ -1,4 +1,4 @@
-import {ItemData, ShoppingList} from "../../../interface/interface";
+import {ShoppingList} from "../../../interface/interface";
 
 export enum ActionTypes {
     ADD_SHOPPING_LIST = 'ADD_SHOPPING_LIST',
