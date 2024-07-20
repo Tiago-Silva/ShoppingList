@@ -11,5 +11,4 @@ export type RootStackParamList = {
 
 export type HeaderRouteParams = {
     name?: string;
-    items?: ItemData[];
 };
