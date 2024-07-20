@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from "./styles";
 import {Input} from "../input";
 import {inputValue} from "../../store/modules/shoppingList/actions";
-import {useAppDispatch} from "../../store/modules/hooks";
+import {useAppDispatch, useAppSelector} from "../../store/modules/hooks";
 
 interface Props {
     handleNavigation?: () => void;
@@ -14,6 +14,7 @@ const HeaderItem = ({
     background = 'background_header'
 }: Props) => {
     const dispatch = useAppDispatch();
+    const changeValue = useAppSelector((state) => state.cart?.inputValue);
 
     const handleInputChanges = (value: string) => {
       dispatch(inputValue(value));
@@ -27,6 +28,7 @@ const HeaderItem = ({
                 height={4}
                 width={44}
                 fontSize={12}
+                value={changeValue}
                 onChangeText={handleInputChanges}
             />
         </S.Container>
