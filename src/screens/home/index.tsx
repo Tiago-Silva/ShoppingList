@@ -11,6 +11,7 @@ import {useAppDispatch} from "../../store/modules/hooks";
 import {useSelector} from "react-redux";
 import {IState} from "../../store/modules/shoppingList/type";
 import {addShoppingList} from "../../store/modules/shoppingList/actions";
+import {ListRenderItemInfo} from "react-native";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -42,12 +43,23 @@ export const Home = () => {
         }
     }, [isLoaded, fetchLists]);
 
+    const handleRenderListCard = ({ item }: ListRenderItemInfo<ShoppingList>) => {
+        return (
+            <ListCard
+                name={item.name}
+                items={item.items}
+            />
+        )
+    }
+
     return (
         <S.Container>
             <S.Content>
-                {listCards.map((item, index) => (
-                    <ListCard key={index} name={item.name} items={item.items} />
-                ))}
+                <S.WrapperList
+                    data={listCards}
+                    keyExtractor={(item: ShoppingList) => item.name}
+                    renderItem={handleRenderListCard}
+                />
             </S.Content>
 
             <S.Footer>

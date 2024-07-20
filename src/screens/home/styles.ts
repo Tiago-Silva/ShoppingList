@@ -1,6 +1,8 @@
 import styled from "styled-components/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import {themeType} from "../../global/theme";
+import {FlatList} from "react-native";
+import {ShoppingList} from "../../interface/interface";
 
 
 export const Container = styled.View`
@@ -21,4 +23,21 @@ export const Footer = styled.View`
     width: 100%;
     flex-direction: row;
     justify-content: flex-end;
+`;
+
+export const WrapperList = styled(
+    FlatList as new () => FlatList<ShoppingList>
+).attrs({
+    showsVerticalScrollIndicator: false,
+    containerStyle: {
+        paddingRight: RFPercentage(2),
+        paddingLeft: RFPercentage(2),
+    },
+    contentContainerStyle: {
+        paddingBottom: RFPercentage(3),
+        gap: RFPercentage(2),
+    }
+})`
+    margin-top: ${RFPercentage(2)}px;
+    width: 100%;
 `;
