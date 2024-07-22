@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import {RFPercentage} from "react-native-responsive-fontsize";
+import {themeType} from "../../global/theme";
 
 
 export const Container = styled.View`
@@ -23,7 +24,7 @@ export const WrapperIcon = styled.TouchableOpacity`
 `;
 
 export const Title = styled.Text`
-    color: ${({ theme }: any) => theme.colors.shape};
+    color: ${({ theme }: {theme: themeType}) => theme.colors.shape};
     font-size: ${RFPercentage(2)}px;
     text-align: center;
 `;
