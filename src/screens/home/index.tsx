@@ -12,6 +12,7 @@ import {useSelector} from "react-redux";
 import {IState} from "../../store/modules/shoppingList/type";
 import {addShoppingList} from "../../store/modules/shoppingList/actions";
 import {ListRenderItemInfo} from "react-native";
+import CustomModal from "../../components/customModal";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -20,6 +21,7 @@ export const Home = () => {
     const dispatch = useAppDispatch();
     const listCards = useSelector<IState, ShoppingList[]>((state) => state.cart.shoppingArrayList);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleNavigation = () => {
         navigation.navigate({name: 'List', params: {} });
@@ -48,8 +50,13 @@ export const Home = () => {
             <ListCard
                 name={item.name}
                 items={item.items}
+                handleShowModal={handleShowModal}
             />
         )
+    }
+
+    const handleShowModal = () => {
+        setIsModalVisible(!isModalVisible);
     }
 
     return (
@@ -69,6 +76,12 @@ export const Home = () => {
                     handleOnPress={handleNavigation}
                 />
             </S.Footer>
+
+            <CustomModal
+                isVisible={isModalVisible}
+                title={'Gerenciar lista'}
+                onClose={handleShowModal}
+            />
         </S.Container>
     );
 }

@@ -10,10 +10,15 @@ import {ShoppingService} from "../../service/shoppingService";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
+interface Props extends ShoppingList {
+    handleShowModal?: () => void;
+}
+
 const ListCard = ({
     name,
     items,
-}: ShoppingList) => {
+    handleShowModal
+}: Props) => {
     const theme = useTheme();
     const navigation = useNavigation<NavigationProp>();
 
@@ -21,15 +26,11 @@ const ListCard = ({
         navigation.navigate({name: 'CheckItems', params: {name, items} });
     }
 
-    const handleUpdateCard = () => {
-        ShoppingService.delete({name, items}).then(() => {});
-    }
-
     return (
         <S.Container onPress={handleShowItems}>
             <S.Header>
                 <S.Title>{name}</S.Title>
-                <S.Wrapper onPress={handleUpdateCard}>
+                <S.Wrapper onPress={handleShowModal}>
                     <S.Icon name={'more-vertical'} />
                 </S.Wrapper>
             </S.Header>
