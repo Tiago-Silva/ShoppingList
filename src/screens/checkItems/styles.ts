@@ -12,9 +12,14 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-    flex: 1;
+    flex: 0.01;
     padding: ${RFPercentage(3)}px ${RFPercentage(2)}px;
     background-color: ${({ theme }: any) => theme.colors.background_card};
+`;
+
+export const Content = styled.View`
+    flex: 0.89;
+    padding: ${RFPercentage(2)}px ${RFPercentage(2)}px;
 `;
 
 export const WrapperList = styled(
@@ -34,9 +39,9 @@ export const WrapperList = styled(
 `;
 
 export const Footer = styled.View`
+    flex: 0.1;
     width: 100%;
     flex-direction: row;
     justify-content: flex-end;
     padding: ${RFPercentage(3)}px ${RFPercentage(2)}px;
-    background-color: ${({ theme }: { theme: themeType }) => theme.colors.background_card};
 `;

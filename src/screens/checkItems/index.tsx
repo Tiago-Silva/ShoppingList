@@ -49,12 +49,14 @@ const CheckItems = () => {
                     width={350}
                     color={theme.colors.text_bar}
                 />
+            </S.Header>
+            <S.Content>
                 <S.WrapperList
                     data={currentItems.length > 0 ? currentItems : []}
                     keyExtractor={(item: ItemData) => item.name}
                     renderItem={handleRenderItem}
                 />
-            </S.Header>
+            </S.Content>
             <S.Footer>
                 <Button
                     title={'+ ADICIONAR'}
