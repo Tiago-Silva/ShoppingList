@@ -35,7 +35,7 @@ export const Title = styled.Text<TitleProps>`
     font-weight: bold;
 `;
 
-export const Line = styled.View`
+export const Line = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
     gap: ${RFPercentage(2)}px;

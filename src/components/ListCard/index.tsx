@@ -10,7 +10,7 @@ import {useNavigation} from "@react-navigation/native";
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
 interface Props extends ShoppingList {
-    handleShowModal?: () => void;
+    handleShowModal?: (name?: string) => void;
 }
 
 const ListCard = ({
@@ -29,7 +29,7 @@ const ListCard = ({
         <S.Container onPress={handleShowItems}>
             <S.Header>
                 <S.Title>{name}</S.Title>
-                <S.Wrapper onPress={handleShowModal}>
+                <S.Wrapper onPress={() => handleShowModal ? handleShowModal(name): {}}>
                     <S.Icon name={'more-vertical'} />
                 </S.Wrapper>
             </S.Header>

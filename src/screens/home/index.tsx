@@ -10,7 +10,7 @@ import {ShoppingService} from "../../service/shoppingService";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {useSelector} from "react-redux";
 import {IState} from "../../store/modules/shoppingList/type";
-import {addShoppingList} from "../../store/modules/shoppingList/actions";
+import {addShoppingList, deleteShoppingList} from "../../store/modules/shoppingList/actions";
 import {ListRenderItemInfo} from "react-native";
 import CustomModal from "../../components/customModal";
 
@@ -22,6 +22,7 @@ export const Home = () => {
     const listCards = useSelector<IState, ShoppingList[]>((state) => state.cart.shoppingArrayList);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [listName, setListName] = useState('');
 
     const handleNavigation = () => {
         navigation.navigate({name: 'List', params: {} });
@@ -55,8 +56,18 @@ export const Home = () => {
         )
     }
 
-    const handleShowModal = () => {
+    const handleShowModal = (name?: string) => {
         setIsModalVisible(!isModalVisible);
+        if (name) {
+            setListName(name);
+        }
+    }
+
+    const handleDeleteList = () => {
+        ShoppingService.delete({name: listName, items: []}).then(() => {});
+        dispatch(deleteShoppingList({name: listName, items: []}));
+        setIsModalVisible(false);
+        setListName('');
     }
 
     return (
@@ -81,6 +92,7 @@ export const Home = () => {
                 isVisible={isModalVisible}
                 title={'Gerenciar lista'}
                 onClose={handleShowModal}
+                handleDelete={handleDeleteList}
             />
         </S.Container>
     );

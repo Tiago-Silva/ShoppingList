@@ -5,12 +5,14 @@ interface Props {
     isVisible: boolean;
     title: string;
     onClose: () => void;
+    handleDelete?: () => void;
 }
 
 const CustomModal = ({
     isVisible,
     title,
-    onClose
+    onClose,
+    handleDelete
 }: Props) => {
     return (
         <S.ModalContainer
@@ -27,7 +29,7 @@ const CustomModal = ({
                     <S.Title $size={2}>Renomear</S.Title>
                 </S.Line>
 
-                <S.Line>
+                <S.Line onPress={handleDelete}>
                     <S.Icon $color={'attention'} name={'trash-2'} />
                     <S.Title
                         $size={2}
