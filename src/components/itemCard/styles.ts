@@ -6,7 +6,7 @@ interface ContainerProps {
     $isPlayng: boolean;
 }
 
-export const Container = styled.View<ContainerProps>`
+export const Container = styled.TouchableOpacity<ContainerProps>`
     flex-direction: row;
     justify-content: space-between;
     

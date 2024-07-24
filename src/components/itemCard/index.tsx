@@ -6,6 +6,7 @@ import {ItemData} from "../../interface/interface";
 import {ShoppingService} from "../../service/shoppingService";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {updateShoppingList} from "../../store/modules/shoppingList/actions";
+import CustomModal from "../customModal";
 
 interface Props {
     name: string;
@@ -14,11 +15,12 @@ interface Props {
 
 const ItemCard = ({
     name,
-    item
+    item,
 }: Props) => {
     const dispatch = useAppDispatch();
     const animationRef = useRef<LottieView>(null);
     const [isPlaying, setIsPlaying] = useState(item.checked || false);
+    const [isVisible, setIsVisible] = useState(false);
 
     const handleAnimationIcon = () => {
         if (isPlaying) {
@@ -30,22 +32,37 @@ const ItemCard = ({
         }
     };
 
+    const updateListInReducer = async () => {
+        const updatedShoppingList = await ShoppingService.getShoppingList(name);
+        dispatch(updateShoppingList(updatedShoppingList));
+    }
+
     const handleUpdateItem = async () => {
         handleAnimationIcon();
 
         const updatedItem = { ...item, checked: isPlaying }
         await ShoppingService.updateItem(name, updatedItem);
 
-        const updatedShoppingList = await ShoppingService.getShoppingList(name);
-        dispatch(updateShoppingList(updatedShoppingList));
+        await updateListInReducer();
     }
 
     useEffect(() => {
         handleAnimationIcon();
     }, []);
 
+    const handleShowModal = () => {
+        setIsVisible(!isVisible);
+    }
+
+    const handleDeleteItem = async () => {
+        await ShoppingService.deleteItemFromList(name, item);
+        await updateListInReducer();
+
+        setIsVisible(false);
+    }
+
     return (
-        <S.Container $isPlayng={isPlaying}>
+        <S.Container $isPlayng={isPlaying} onLongPress={handleShowModal}>
             <S.Content>
                 <S.WrapperIcon onPress={handleUpdateItem}>
                     <IconAnimation
@@ -63,6 +80,13 @@ const ItemCard = ({
             <S.Content>
                 <S.Title>{item.quantity}</S.Title>
             </S.Content>
+
+            <CustomModal
+                isVisible={isVisible}
+                title={'Gerenciar itens'}
+                onClose={handleShowModal}
+                handleDelete={handleDeleteItem}
+            />
         </S.Container>
     );
 };

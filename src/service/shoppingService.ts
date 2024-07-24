@@ -84,5 +84,22 @@ export const ShoppingService = {
         } catch (error) {
             console.error('Erro ao deletar a lista no AsyncStorage', error);
         }
+    },
+    deleteItemFromList: async (listName: string, item: ItemData) => {
+        try {
+            const shoppingList = await AsyncStorage.getItem('shoppingList');
+            let listsArray: ShoppingList[] = shoppingList ? JSON.parse(shoppingList) : [];
+
+            const listIndex = listsArray.findIndex(l => l.name === listName);
+
+            if (listIndex !== -1) {
+                listsArray[listIndex].items = listsArray[listIndex].items.filter(i => i.name !== item.name);
+                await AsyncStorage.setItem('shoppingList', JSON.stringify(listsArray));
+            } else {
+                console.error('Lista não encontrada');
+            }
+        } catch (error) {
+            console.error('Erro ao deletar o item da lista no AsyncStorage', error);
+        }
     }
 }
