@@ -5,6 +5,7 @@ export interface ItemData {
     quantity: number;
     icon?: string;
     checked?: boolean;
+    add?: boolean;
 }
 
 export interface ShoppingList {

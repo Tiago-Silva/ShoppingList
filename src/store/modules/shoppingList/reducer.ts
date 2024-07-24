@@ -16,6 +16,14 @@ export const cart: Reducer<IListState, ListActions> = (state = INITIAL_STATE, ac
 
                 draft.shoppingArrayList.push(shoppingList);
 
+                const listIndex = draft.shoppingArrayList.findIndex(list =>
+                    list.name === shoppingList.name
+                );
+
+                if (listIndex >= 0) {
+                    draft.shoppingArrayList[listIndex].items.sort((a, b) => (b.checked ? 1 : 0) - (a.checked ? 1 : 0));
+                }
+
                 break;
             }
             case ActionTypes.DELETE_SHOPPING_LIST: {
@@ -42,6 +50,8 @@ export const cart: Reducer<IListState, ListActions> = (state = INITIAL_STATE, ac
 
                 if (listIndex >= 0) {
                     draft.shoppingArrayList[listIndex] = shoppingList;
+
+                    draft.shoppingArrayList[listIndex].items.sort((a, b) => (b.checked ? 1 : 0) - (a.checked ? 1 : 0));
                 }
 
                 break;
