@@ -6,6 +6,7 @@ import {ItemData} from "../../interface/interface";
 import {ShoppingService} from "../../service/shoppingService";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {updateShoppingList} from "../../store/modules/shoppingList/actions";
+import {Content} from "./styles";
 
 interface Props {
     name: string;
@@ -45,8 +46,8 @@ const ItemCard = ({
     }, []);
 
     return (
-        <S.Container>
-            <S.RightContainer>
+        <S.Container $isPlayng={isPlaying}>
+            <S.Content>
                 <S.WrapperIcon onPress={handleUpdateItem}>
                     <IconAnimation
                         animationKey={'checkCircle'}
@@ -58,11 +59,11 @@ const ItemCard = ({
                     />
                 </S.WrapperIcon>
                 <S.Title>{item.name}</S.Title>
-            </S.RightContainer>
+            </S.Content>
 
-            <S.LeftContainer>
+            <S.Content>
                 <S.Title>{item.quantity}</S.Title>
-            </S.LeftContainer>
+            </S.Content>
         </S.Container>
     );
 };

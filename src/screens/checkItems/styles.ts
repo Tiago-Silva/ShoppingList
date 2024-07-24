@@ -19,7 +19,7 @@ export const Header = styled.View`
 
 export const Content = styled.View`
     flex: 0.89;
-    padding: ${RFPercentage(2)}px ${RFPercentage(2)}px;
+    margin-top: -${RFPercentage(2)}px;
 `;
 
 export const WrapperList = styled(
