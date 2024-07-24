@@ -18,6 +18,20 @@ export const cart: Reducer<IListState, ListActions> = (state = INITIAL_STATE, ac
 
                 break;
             }
+            case ActionTypes.DELETE_SHOPPING_LIST: {
+                const actionWithPayload = actions as AddShoppingListAction;
+                const { shoppingList } = actionWithPayload.payload;
+
+                const listIndex = draft.shoppingArrayList.findIndex(list =>
+                    list.name === shoppingList.name
+                );
+
+                if (listIndex >= 0) {
+                    draft.shoppingArrayList.splice(listIndex, 1);
+                }
+
+                break;
+            }
             case ActionTypes.UPDATE_SHOPPING_LIST: {
                 const actionWithPayload = actions as AddShoppingListAction;
                 const { shoppingList } = actionWithPayload.payload;

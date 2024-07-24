@@ -6,6 +6,11 @@ export const addShoppingList = (list: ShoppingList): AddShoppingListAction => ({
     payload: { shoppingList: list }
 });
 
+export const deleteShoppingList = (list: ShoppingList): AddShoppingListAction => ({
+    type: ActionTypes.DELETE_SHOPPING_LIST,
+    payload: { shoppingList: list }
+});
+
 export const updateShoppingList = (list: ShoppingList): AddShoppingListAction => ({
     type: ActionTypes.UPDATE_SHOPPING_LIST,
     payload: { shoppingList: list }

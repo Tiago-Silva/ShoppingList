@@ -2,6 +2,7 @@ import {ShoppingList} from "../../../interface/interface";
 
 export enum ActionTypes {
     ADD_SHOPPING_LIST = 'ADD_SHOPPING_LIST',
+    DELETE_SHOPPING_LIST = 'DELETE_SHOPPING_LIST',
     UPDATE_SHOPPING_LIST = 'UPDATE_SHOPPING_LIST',
     INPUT_VALUE= 'INPUT_VALUE',
     CLEAR_LIST = 'CLEAR_LIST',
