@@ -6,7 +6,6 @@ import {ItemData} from "../../interface/interface";
 import {ShoppingService} from "../../service/shoppingService";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {updateShoppingList} from "../../store/modules/shoppingList/actions";
-import {Content} from "./styles";
 
 interface Props {
     name: string;
