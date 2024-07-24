@@ -20,7 +20,22 @@ const CustomModal = ({
             onBackdropPress={onClose}
         >
             <S.Content>
-                <S.Title>{title}</S.Title>
+                <S.Title $size={3}>{title}</S.Title>
+
+                <S.Line>
+                    <S.Icon name={'edit-2'} />
+                    <S.Title $size={2}>Renomear</S.Title>
+                </S.Line>
+
+                <S.Line>
+                    <S.Icon $color={'attention'} name={'trash-2'} />
+                    <S.Title
+                        $size={2}
+                        $color={'attention'}
+                    >
+                        Excluir
+                    </S.Title>
+                </S.Line>
             </S.Content>
         </S.ModalContainer>
     );
