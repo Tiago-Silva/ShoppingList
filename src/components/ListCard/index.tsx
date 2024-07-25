@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as S from './styles';
 import * as Progress from 'react-native-progress';
 import {useTheme} from "styled-components";
@@ -6,30 +6,42 @@ import {ShoppingList} from "../../interface/interface";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import {useNavigation} from "@react-navigation/native";
+import {ShoppingService} from "../../service/shoppingService";
+import {deleteShoppingList} from "../../store/modules/shoppingList/actions";
+import {useAppDispatch} from "../../store/modules/hooks";
+import CustomModal from "../customModal";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
-interface Props extends ShoppingList {
-    handleShowModal?: (name?: string) => void;
-}
 
 const ListCard = ({
     name,
     items,
-    handleShowModal
-}: Props) => {
+}: ShoppingList) => {
     const theme = useTheme();
     const navigation = useNavigation<NavigationProp>();
+    const dispatch = useAppDispatch();
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleShowItems = () => {
         navigation.navigate({name: 'CheckItems', params: {name, items} });
+    }
+
+    const handleShowModal = () => {
+        setIsModalVisible(!isModalVisible);
+    }
+
+    const handleDeleteList = () => {
+        ShoppingService.delete({name: name, items: []}).then(() => {});
+        dispatch(deleteShoppingList({name: name, items: []}));
+        setIsModalVisible(false);
     }
 
     return (
         <S.Container onPress={handleShowItems}>
             <S.Header>
                 <S.Title>{name}</S.Title>
-                <S.Wrapper onPress={() => handleShowModal ? handleShowModal(name): {}}>
+                <S.Wrapper onPress={handleShowModal}>
                     <S.Icon name={'more-vertical'} />
                 </S.Wrapper>
             </S.Header>
@@ -40,6 +52,13 @@ const ListCard = ({
                     color={theme.colors.text_bar}
                 />
             </S.Footer>
+
+            <CustomModal
+                isVisible={isModalVisible}
+                title={'Gerenciar lista'}
+                onClose={handleShowModal}
+                handleDelete={handleDeleteList}
+            />
         </S.Container>
     );
 };

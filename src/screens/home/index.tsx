@@ -10,9 +10,8 @@ import {ShoppingService} from "../../service/shoppingService";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {useSelector} from "react-redux";
 import {IState} from "../../store/modules/shoppingList/type";
-import {addShoppingList, deleteShoppingList} from "../../store/modules/shoppingList/actions";
+import {addShoppingList} from "../../store/modules/shoppingList/actions";
 import {ListRenderItemInfo} from "react-native";
-import CustomModal from "../../components/customModal";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -21,8 +20,6 @@ export const Home = () => {
     const dispatch = useAppDispatch();
     const listCards = useSelector<IState, ShoppingList[]>((state) => state.cart.shoppingArrayList);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const [listName, setListName] = useState('');
 
     const handleNavigation = () => {
         navigation.navigate({name: 'List', params: {} });
@@ -51,23 +48,8 @@ export const Home = () => {
             <ListCard
                 name={item.name}
                 items={item.items}
-                handleShowModal={handleShowModal}
             />
         )
-    }
-
-    const handleShowModal = (name?: string) => {
-        setIsModalVisible(!isModalVisible);
-        if (name) {
-            setListName(name);
-        }
-    }
-
-    const handleDeleteList = () => {
-        ShoppingService.delete({name: listName, items: []}).then(() => {});
-        dispatch(deleteShoppingList({name: listName, items: []}));
-        setIsModalVisible(false);
-        setListName('');
     }
 
     return (
@@ -87,13 +69,6 @@ export const Home = () => {
                     handleOnPress={handleNavigation}
                 />
             </S.Footer>
-
-            <CustomModal
-                isVisible={isModalVisible}
-                title={'Gerenciar lista'}
-                onClose={handleShowModal}
-                handleDelete={handleDeleteList}
-            />
         </S.Container>
     );
 }
