@@ -1,6 +1,13 @@
 import { Reducer } from "redux";
 import { produce } from 'immer';
-import {ActionTypes, ListActions, IListState, InputValue, AddShoppingListAction} from "./type";
+import {
+    ActionTypes,
+    ListActions,
+    IListState,
+    InputValue,
+    AddShoppingListAction,
+    UpdateShoppingListNameAction
+} from "./type";
 
 const INITIAL_STATE: IListState = {
     shoppingArrayList: [],
@@ -50,6 +57,23 @@ export const cart: Reducer<IListState, ListActions> = (state = INITIAL_STATE, ac
 
                 if (listIndex >= 0) {
                     draft.shoppingArrayList[listIndex] = shoppingList;
+
+                    draft.shoppingArrayList[listIndex].items.sort((a, b) => (b.checked ? 1 : 0) - (a.checked ? 1 : 0));
+                }
+
+                break;
+            }
+
+            case ActionTypes.UPDATE_SHOPPING_LIST_NAME: {
+                const actionWithPayload = actions as UpdateShoppingListNameAction;
+                const { oldName, newName } = actionWithPayload.payload;
+
+                const listIndex = draft.shoppingArrayList.findIndex(list =>
+                    list.name === oldName
+                );
+
+                if (listIndex >= 0) {
+                    draft.shoppingArrayList[listIndex].name = newName;
 
                     draft.shoppingArrayList[listIndex].items.sort((a, b) => (b.checked ? 1 : 0) - (a.checked ? 1 : 0));
                 }

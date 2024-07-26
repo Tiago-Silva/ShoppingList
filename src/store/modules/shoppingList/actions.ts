@@ -1,5 +1,5 @@
 import {ShoppingList} from "../../../interface/interface";
-import {ActionTypes, AddShoppingListAction, InputValue} from "./type";
+import {ActionTypes, AddShoppingListAction, InputValue, UpdateShoppingListNameAction} from "./type";
 
 export const addShoppingList = (list: ShoppingList): AddShoppingListAction => ({
     type: ActionTypes.ADD_SHOPPING_LIST,
@@ -14,6 +14,11 @@ export const deleteShoppingList = (list: ShoppingList): AddShoppingListAction =>
 export const updateShoppingList = (list: ShoppingList): AddShoppingListAction => ({
     type: ActionTypes.UPDATE_SHOPPING_LIST,
     payload: { shoppingList: list }
+});
+
+export const updateShoppingListName = (oldName: string, newName: string): UpdateShoppingListNameAction => ({
+    type: ActionTypes.UPDATE_SHOPPING_LIST_NAME,
+    payload: { oldName: oldName, newName: newName }
 });
 
 export function clearList () {
