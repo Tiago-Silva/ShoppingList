@@ -7,7 +7,7 @@ import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import {useNavigation} from "@react-navigation/native";
 import {ShoppingService} from "../../service/shoppingService";
-import {deleteShoppingList} from "../../store/modules/shoppingList/actions";
+import {deleteShoppingList, updateShoppingListName} from "../../store/modules/shoppingList/actions";
 import {useAppDispatch} from "../../store/modules/hooks";
 import CustomModal from "../customModal";
 
@@ -22,6 +22,9 @@ const ListCard = ({
     const navigation = useNavigation<NavigationProp>();
     const dispatch = useAppDispatch();
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isRename, setIsRename] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+
 
     const handleShowItems = () => {
         navigation.navigate({name: 'CheckItems', params: {name, items} });
@@ -29,12 +32,25 @@ const ListCard = ({
 
     const handleShowModal = () => {
         setIsModalVisible(!isModalVisible);
+        setIsRename(false);
     }
 
-    const handleDeleteList = () => {
-        ShoppingService.delete({name: name, items: []}).then(() => {});
+    const handleDeleteList = async () => {
+        await ShoppingService.delete({name: name, items: []}).then(() => {});
         dispatch(deleteShoppingList({name: name, items: []}));
         setIsModalVisible(false);
+    }
+
+    const handleRename = async () => {
+        if (isRename) {
+            await ShoppingService.updateShoppingListName(name, inputValue).then(() => {});
+            dispatch(updateShoppingListName(name, inputValue));
+            setIsModalVisible(false);
+            setIsRename(false);
+            setInputValue('');
+        }
+
+        setIsRename(!isRename);
     }
 
     return (
@@ -58,6 +74,9 @@ const ListCard = ({
                 title={'Gerenciar lista'}
                 onClose={handleShowModal}
                 handleDelete={handleDeleteList}
+                isRename={isRename}
+                handleRename={handleRename}
+                handleInputValue={setInputValue}
             />
         </S.Container>
     );
