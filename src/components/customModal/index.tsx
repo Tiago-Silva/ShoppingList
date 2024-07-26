@@ -1,18 +1,25 @@
 import React from 'react';
 import * as S from './styles';
+import {Input} from "../input";
 
 interface Props {
     isVisible: boolean;
     title: string;
     onClose: () => void;
     handleDelete?: () => void;
+    isRename?: boolean;
+    handleRename?: () => void;
+    handleInputValue?: (value: string) => void;
 }
 
 const CustomModal = ({
     isVisible,
     title,
     onClose,
-    handleDelete
+    handleDelete,
+    isRename = false,
+    handleRename,
+    handleInputValue
 }: Props) => {
     return (
         <S.ModalContainer
@@ -24,9 +31,19 @@ const CustomModal = ({
             <S.Content>
                 <S.Title $size={3}>{title}</S.Title>
 
-                <S.Line>
+                <S.Line onPress={handleRename}>
                     <S.Icon name={'edit-2'} />
-                    <S.Title $size={2}>Renomear</S.Title>
+                    {!isRename ? (
+                        <S.Title $size={2}>Renomear</S.Title>
+                    ) : (
+                        <Input
+                            placeholder={'Novo nome'}
+                            height={4}
+                            width={30}
+                            fontSize={12}
+                            onChangeText={handleInputValue}
+                        />
+                    )}
                 </S.Line>
 
                 <S.Line onPress={handleDelete}>
