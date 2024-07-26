@@ -21,6 +21,8 @@ const ItemCard = ({
     const animationRef = useRef<LottieView>(null);
     const [isPlaying, setIsPlaying] = useState(item.checked || false);
     const [isVisible, setIsVisible] = useState(false);
+    const [isRename, setIsRename] = useState(false);
+    const [inputValue, setInputValue] = useState('');
 
     const handleAnimationIcon = () => {
         if (isPlaying) {
@@ -52,6 +54,7 @@ const ItemCard = ({
 
     const handleShowModal = () => {
         setIsVisible(!isVisible);
+        setIsRename(false);
     }
 
     const handleDeleteItem = async () => {
@@ -60,6 +63,18 @@ const ItemCard = ({
 
         setIsVisible(false);
     }
+
+    const handleRename = async () => {
+        if (isRename) {
+            const updatedItem = { ...item, name: inputValue }
+            await ShoppingService.updateItemName(name, item, updatedItem);
+            await updateListInReducer();
+            setIsVisible(false);
+            setInputValue('');
+        }
+
+        setIsRename(!isRename);
+    };
 
     return (
         <S.Container $isPlayng={isPlaying} onLongPress={handleShowModal}>
@@ -86,6 +101,9 @@ const ItemCard = ({
                 title={'Gerenciar itens'}
                 onClose={handleShowModal}
                 handleDelete={handleDeleteItem}
+                isRename={isRename}
+                handleRename={handleRename}
+                handleInputValue={setInputValue}
             />
         </S.Container>
     );

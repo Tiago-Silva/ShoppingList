@@ -73,6 +73,27 @@ export const ShoppingService = {
         }
     },
 
+    updateItemName: async (listName: string, oldeItem: ItemData, newItem: ItemData) => {
+        try {
+            const shoppingList = await AsyncStorage.getItem('shoppingList');
+            let listsArray: ShoppingList[] = shoppingList ? JSON.parse(shoppingList) : [];
+
+            const listIndex = listsArray.findIndex(list => list.name === listName);
+
+            if (listIndex !== -1) {
+                listsArray[listIndex] = {
+                    ...listsArray[listIndex],
+                    items: listsArray[listIndex].items.map(item => item.name === oldeItem.name ? newItem : item)
+                };
+                await AsyncStorage.setItem('shoppingList', JSON.stringify(listsArray));
+            } else {
+                console.error('Lista não encontrada');
+            }
+        } catch (error) {
+            console.error('Erro ao atualizar a lista no AsyncStorage', error);
+        }
+    },
+
     getAll: async () => {
         try {
             const shoppingList = await AsyncStorage.getItem('shoppingList');
