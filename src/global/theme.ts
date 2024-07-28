@@ -16,6 +16,7 @@ export const lightTheme: themeType = {
         title: '#FFE600',
         text: '#608fe6',
         text_bar: '#969cB2',
+        text_bar_2: '#d0f80a',
         text_dark: '#000000',
 
         background: '#1d1f22',
@@ -41,7 +42,8 @@ export const darkTheme: themeType = {
         shape: '#FFFFFF',
         title: '#FFE600',
         text: '#608fe6',
-        text_bar: '#969cB2',
+        text_bar: '#d0f80a',
+        text_bar_2: '#969cB2',
         text_dark: '#000000',
 
         background: '#1d1f22',
@@ -65,6 +67,7 @@ export type themeType = {
         title: string;
         text: string;
         text_bar: string;
+        text_bar_2: string;
         text_dark: string;
         background: string;
         background_card: string;
