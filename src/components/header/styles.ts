@@ -39,3 +39,7 @@ export const Icon = styled(Feather)`
     color: ${({ theme }: { theme: themeType }) => theme.colors.shape};
     font-size: ${RFPercentage(3)}px;
 `;
+
+export const WrapperTouchIcon = styled.TouchableOpacity`
+    
+`;
