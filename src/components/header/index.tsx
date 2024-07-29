@@ -4,6 +4,10 @@ import IconAnimation from "../animation/IconAnimation";
 import {RouteProp, useRoute} from "@react-navigation/native";
 import {HeaderRouteParams} from "../../types/types";
 import CustomModal from "../customModal";
+import {useAppDispatch} from "../../store/modules/hooks";
+import {setTheme} from "../../store/modules/theme/actions";
+import {useSelector} from "react-redux";
+import {ThemeState} from "../../store/modules/theme/type";
 
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 
@@ -18,14 +22,15 @@ const Header = ({
     handleNavigation,
     background = 'background_header'
 }: Props) => {
-
+    const dispatch = useAppDispatch();
+    const theme = useSelector<ThemeState>((state: any) => state.theme.currentTheme);
     const route = useRoute<HeaderRouteProp>();
     const name = route.params?.name || 'Minhas Listas';
-
     const [isVisible, setIsVisible] = useState(false);
 
-    const handleSelectTheme = (value: string) => {
-        console.log(value);
+    const handleSelectTheme = (value: 'dark' | 'light') => {
+        dispatch(setTheme({currentTheme: value}));
+        setIsVisible(false);
     }
 
     const renderHeaderContent = () => {
@@ -42,7 +47,7 @@ const Header = ({
                             top={-17}
                         />
                         <S.WrapperTouchIcon onPress={handleShowModal}>
-                            <S.Icon name="moon" />
+                            <S.Icon name={theme === 'dark' ? 'moon' : 'sun'} />
                         </S.WrapperTouchIcon>
                     </S.WrapperIcon>
                 </>

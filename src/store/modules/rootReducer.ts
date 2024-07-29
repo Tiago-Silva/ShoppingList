@@ -5,5 +5,5 @@ import {themeReducer} from "./theme/reducer";
 
 export default combineReducers({
     cart,
-    themeReducer
+    theme: themeReducer
 });
