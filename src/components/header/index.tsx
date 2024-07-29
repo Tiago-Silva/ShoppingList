@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as S from "./styles";
 import IconAnimation from "../animation/IconAnimation";
 import {RouteProp, useRoute} from "@react-navigation/native";
 import {HeaderRouteParams} from "../../types/types";
+import CustomModal from "../customModal";
+import {ShoppingService} from "../../service/shoppingService";
 
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 
@@ -21,6 +23,12 @@ const Header = ({
     const route = useRoute<HeaderRouteProp>();
     const name = route.params?.name || 'Minhas Listas';
 
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleSelectTheme = (value: string) => {
+        console.log(value);
+    }
+
     const renderHeaderContent = () => {
         if (isShow) {
             return (
@@ -34,7 +42,9 @@ const Header = ({
                             height={50}
                             top={-17}
                         />
-                        <S.Icon name="more-vertical" />
+                        <S.WrapperTouchIcon onPress={handleShowModal}>
+                            <S.Icon name="moon" />
+                        </S.WrapperTouchIcon>
                     </S.WrapperIcon>
                 </>
             );
@@ -43,9 +53,21 @@ const Header = ({
         }
     };
 
+    const handleShowModal = () => {
+        setIsVisible(!isVisible);
+    }
+
     return (
         <S.Container $background={background}>
             {renderHeaderContent()}
+
+            <CustomModal
+                isVisible={isVisible}
+                title={'Ecolha um tema'}
+                onClose={handleShowModal}
+                isTheme={true}
+                handleSelectTheme={handleSelectTheme}
+            />
         </S.Container>
     );
 };
