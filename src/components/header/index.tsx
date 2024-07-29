@@ -4,7 +4,6 @@ import IconAnimation from "../animation/IconAnimation";
 import {RouteProp, useRoute} from "@react-navigation/native";
 import {HeaderRouteParams} from "../../types/types";
 import CustomModal from "../customModal";
-import {ShoppingService} from "../../service/shoppingService";
 
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 
