@@ -3,7 +3,7 @@ import {RFPercentage} from "react-native-responsive-fontsize";
 import {themeType} from "../../global/theme";
 import {FlatList} from "react-native";
 import {ItemData} from "../../interface/interface";
-
+import Animated from "react-native-reanimated";
 
 export const Container = styled.View`
     flex: 1;
@@ -23,7 +23,7 @@ export const Content = styled.View`
 `;
 
 export const WrapperList = styled(
-    FlatList as new () => FlatList<ItemData>
+    Animated.FlatList as unknown as new () => Animated.FlatList<ItemData>
 ).attrs({
     showsVerticalScrollIndicator: false,
     containerStyle: {
