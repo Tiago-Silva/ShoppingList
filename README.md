@@ -2,6 +2,7 @@
 Aplicativo para criação e gestão de lista de compras feito com Expo, React-Native, Typescript e styled-components.
 
 <h1 align="center">
+    <img src="./assets/telaTheme.gif" width="300"/>
     <img src="./assets/tela01.jpeg" width="300"/>
     <img src="./assets/tela02.jpeg" width="300"/>
 </h1>
