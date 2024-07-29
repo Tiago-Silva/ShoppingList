@@ -6,75 +6,69 @@ import Header from "../components/header";
 import CheckItems from "../screens/checkItems";
 import AddItems from "../screens/addItems";
 import HeaderItem from "../components/header/headerItem";
-import { enableScreens } from 'react-native-screens';
-import {GestureHandlerRootView} from "react-native-gesture-handler";
-
-enableScreens();
 
 const Stack = createStackNavigator();
 
 export const Routes = () => {
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            <NavigationContainer>
-                <Stack.Navigator
-                    screenOptions={{
-                        ...TransitionPresets.SlideFromRightIOS,
+        <NavigationContainer>
+            <Stack.Navigator
+                screenOptions={{
+                    ...TransitionPresets.SlideFromRightIOS,
+                }}
+            >
+                <Stack.Screen
+                    name="Home"
+                    component={Home}
+                    options={{
+                        headerShown: true,
+                        header: ({ navigation, route, options, back }) => {
+                            return <Header isShow={true} />
+                        }
                     }}
-                >
-                    <Stack.Screen
-                        name="Home"
-                        component={Home}
-                        options={{
-                            headerShown: true,
-                            header: ({ navigation, route, options, back }) => {
-                                return <Header isShow={true} />
-                            }
-                        }}
-                    />
-                    <Stack.Screen
-                        name="List"
-                        component={List}
-                        options={{
-                            headerShown: true,
-                            header: ({ navigation, route, options, back }) => {
-                                return <Header isShow={false} handleNavigation={navigation.goBack} />
-                            }
-                        }}
-                    />
-                    <Stack.Screen
-                        name="CheckItems"
-                        component={CheckItems}
-                        options={{
-                            headerShown: true,
-                            header: ({ navigation, route, options, back }) => {
-                                return (
-                                    <Header
-                                        isShow={true}
-                                        handleNavigation={navigation.goBack}
-                                        background={'background_card'}
-                                    />
-                                )
-                            }
-                        }}
-                    />
-                    <Stack.Screen
-                        name="AddItems"
-                        component={AddItems}
-                        options={{
-                            headerShown: true,
-                            header: ({ navigation, route, options, back }) => {
-                                return (
-                                    <HeaderItem
-                                        handleNavigation={navigation.goBack}
-                                        background={'background_card'}
-                                    />
-                                )
-                            }
-                        }}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </GestureHandlerRootView>
+                />
+                <Stack.Screen
+                    name="List"
+                    component={List}
+                    options={{
+                        headerShown: true,
+                        header: ({ navigation, route, options, back }) => {
+                            return <Header isShow={false} handleNavigation={navigation.goBack} />
+                        }
+                    }}
+                />
+                <Stack.Screen
+                    name="CheckItems"
+                    component={CheckItems}
+                    options={{
+                        headerShown: true,
+                        header: ({ navigation, route, options, back }) => {
+                            return (
+                                <Header
+                                    isShow={true}
+                                    handleNavigation={navigation.goBack}
+                                    background={'background_card'}
+                                />
+                            )
+                        }
+                    }}
+                />
+                <Stack.Screen
+                    name="AddItems"
+                    component={AddItems}
+                    options={{
+                        headerShown: true,
+                        header: ({ navigation, route, options, back }) => {
+                            return (
+                                <HeaderItem
+                                    handleNavigation={navigation.goBack}
+                                    background={'background_card'}
+                                />
+                            )
+                        }
+                    }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 }
