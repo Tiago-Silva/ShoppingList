@@ -89,11 +89,11 @@ const ItemCard = ({
                         top={-7}
                     />
                 </S.WrapperIcon>
-                <S.Title>{item.name}</S.Title>
+                <S.Title $isPlayng={isPlaying}>{item.name}</S.Title>
             </S.Content>
 
             <S.Content>
-                <S.Title>{item.quantity}</S.Title>
+                <S.Title $isPlayng={isPlaying}>{item.quantity}</S.Title>
             </S.Content>
 
             <CustomModal

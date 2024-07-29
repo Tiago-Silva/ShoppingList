@@ -33,8 +33,8 @@ export const WrapperIcon = styled.TouchableOpacity`
     bottom: -${RFPercentage(1)}px;
 `;
 
-export const Title = styled.Text`
-    color: ${({ theme }: {theme: themeType}) => theme.colors.shape};
+export const Title = styled.Text<ContainerProps>`
+    color: ${({ theme, $isPlayng }: {theme: themeType, $isPlayng: boolean}) => $isPlayng ? theme.colors.text_dark : theme.colors.shape};
     font-size: ${RFPercentage(2)}px;
     text-align: center;
 `;
