@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 import {Input} from "../input";
+import {ThemeType} from "../../store/modules/theme/type";
 
 interface Props {
     isVisible: boolean;
@@ -11,7 +12,7 @@ interface Props {
     isTheme?: boolean;
     handleRename?: () => void;
     handleInputValue?: (value: string) => void;
-    handleSelectTheme?: (value: 'dark' | 'light') => void;
+    handleSelectTheme?: (value: ThemeType) => void;
 }
 
 const CustomModal = ({

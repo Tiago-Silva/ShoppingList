@@ -7,7 +7,7 @@ import CustomModal from "../customModal";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {setTheme} from "../../store/modules/theme/actions";
 import {useSelector} from "react-redux";
-import {ThemeState} from "../../store/modules/theme/type";
+import {ThemeState, ThemeType} from "../../store/modules/theme/type";
 import {ThemeService} from "../../service/themeService";
 
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
@@ -29,7 +29,7 @@ const Header = ({
     const name = route.params?.name || 'Minhas Listas';
     const [isVisible, setIsVisible] = useState(false);
 
-    const handleSelectTheme = (value: 'dark' | 'light') => {
+    const handleSelectTheme = (value: ThemeType) => {
         ThemeService.setTheme(value).then(() => {});
         dispatch(setTheme({currentTheme: value}));
         setIsVisible(false);

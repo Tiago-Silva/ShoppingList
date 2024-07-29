@@ -4,8 +4,10 @@ export enum ActionTypes {
     SET_THEME = 'SET_THEME',
 }
 
+export type ThemeType = 'dark' | 'light';
+
 export interface ThemeState {
-    currentTheme: 'dark' | 'light';
+    currentTheme: ThemeType;
 }
 
 interface Action {
