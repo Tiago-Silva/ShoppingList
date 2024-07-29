@@ -11,7 +11,7 @@ interface Props {
     isTheme?: boolean;
     handleRename?: () => void;
     handleInputValue?: (value: string) => void;
-    handleSelectTheme?: (value: string) => void;
+    handleSelectTheme?: (value: 'dark' | 'light') => void;
 }
 
 const CustomModal = ({

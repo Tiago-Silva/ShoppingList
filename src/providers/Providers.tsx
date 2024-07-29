@@ -1,7 +1,6 @@
 import { Provider } from 'react-redux';
 import store from '../store';
-import {ThemeProvider} from "styled-components";
-import {darkTheme} from "../global/theme";
+import CustomThemeProvider from "../components/theme/customThemeProvider";
 
 interface Props {
     children: React.ReactNode;
@@ -12,9 +11,9 @@ export const Providers = ({
 }: Props) => {
     return (
         <Provider store={store}>
-            <ThemeProvider theme={darkTheme}>
+            <CustomThemeProvider>
                 {children}
-            </ThemeProvider>
+            </CustomThemeProvider>
         </Provider>
     );
 };
