@@ -12,6 +12,8 @@ import {useSelector} from "react-redux";
 import {IState} from "../../store/modules/shoppingList/type";
 import {addShoppingList} from "../../store/modules/shoppingList/actions";
 import {ListRenderItemInfo} from "react-native";
+import {ThemeService} from "../../service/themeService";
+import {setTheme} from "../../store/modules/theme/actions";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -27,12 +29,16 @@ export const Home = () => {
 
     const fetchLists = useCallback(async () => {
         const lists = await ShoppingService.getAll();
+        const theme = await ThemeService.getTheme();
         if (lists.length > 0) {
             lists.forEach((list: ShoppingList) => {
                 if (list.name.length > 0) {
                     dispatch(addShoppingList(list));
                 }
             });
+        }
+        if (theme) {
+            dispatch(setTheme({currentTheme: theme}));
         }
         setIsLoaded(true);
     }, [dispatch]);

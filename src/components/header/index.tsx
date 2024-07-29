@@ -8,6 +8,7 @@ import {useAppDispatch} from "../../store/modules/hooks";
 import {setTheme} from "../../store/modules/theme/actions";
 import {useSelector} from "react-redux";
 import {ThemeState} from "../../store/modules/theme/type";
+import {ThemeService} from "../../service/themeService";
 
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 
@@ -29,6 +30,7 @@ const Header = ({
     const [isVisible, setIsVisible] = useState(false);
 
     const handleSelectTheme = (value: 'dark' | 'light') => {
+        ThemeService.setTheme(value).then(() => {});
         dispatch(setTheme({currentTheme: value}));
         setIsVisible(false);
     }
