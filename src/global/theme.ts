@@ -44,7 +44,7 @@ export const darkTheme: themeType = {
         text: '#608fe6',
         text_bar: '#d0f80a',
         text_bar_2: '#969cB2',
-        text_dark: '#000000',
+        text_dark: '#969cB2',
 
         background: '#1d1f22',
         background_card: '#303035',
