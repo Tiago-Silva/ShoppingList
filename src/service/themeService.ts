@@ -6,6 +6,11 @@ export const ThemeService = {
     getTheme: async (): Promise<ThemeType> => {
         try {
             const theme = await AsyncStorage.getItem('theme');
+
+            if (!theme) {
+                await AsyncStorage.setItem('theme', 'dark');
+            }
+
             if (theme === 'dark' || theme === 'light') {
                 return theme;
             }
