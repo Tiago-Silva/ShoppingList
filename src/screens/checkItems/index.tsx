@@ -11,6 +11,8 @@ import ItemCard from "../../components/itemCard";
 import {ListRenderItemInfo} from "react-native";
 import {useSelector} from "react-redux";
 import {IState} from "../../store/modules/shoppingList/type";
+import {MotiView} from "moti";
+import {FadeIn, FadeOut} from "react-native-reanimated";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
@@ -29,10 +31,17 @@ const CheckItems = () => {
 
     const handleRenderItem = ({ item }: ListRenderItemInfo<ItemData>) => {
         return (
-            <ItemCard
-                name={name}
-                item={item}
-            />
+            <MotiView
+                from={{ opacity: 0, translateX: 100 }}
+                animate={{ opacity: 1, translateX: 0 }}
+                exit={{ opacity: 0, translateX: -100 }}
+                transition={{type: 'spring'}}
+            >
+                <ItemCard
+                    name={name}
+                    item={item}
+                />
+            </MotiView>
         )
     }
 
@@ -55,6 +64,8 @@ const CheckItems = () => {
                     data={currentItems.length > 0 ? currentItems : []}
                     keyExtractor={(item: ItemData) => item.name}
                     renderItem={handleRenderItem}
+                    entering={FadeIn}
+                    exiting={FadeOut}
                 />
             </S.Content>
             <S.Footer>
