@@ -14,15 +14,15 @@ export const lightTheme: themeType = {
 
         shape: '#FFFFFF',
         title: '#FFE600',
-        text: '#608fe6',
-        text_bar: '#969cB2',
+        text: '#FFFFFF',
+        text_bar: '#FFFFFF',
         text_bar_2: '#d0f80a',
         text_dark: '#000000',
 
-        background: '#1d1f22',
-        background_card: '#303035',
-        background_header: '#1d1f22',
-        gray_01: '#30353c',
+        background: '#f4f1f1',
+        background_card: '#5636D3',
+        background_header: '#5636D3',
+        gray_01: '#5636D3',
 
     }
 }
