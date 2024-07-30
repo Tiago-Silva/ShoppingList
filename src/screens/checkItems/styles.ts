@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 import {RFPercentage} from "react-native-responsive-fontsize";
 import {themeType} from "../../global/theme";
-import {FlatList} from "react-native";
 import {ItemData} from "../../interface/interface";
 import Animated from "react-native-reanimated";
 
