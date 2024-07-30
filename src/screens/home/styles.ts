@@ -1,9 +1,8 @@
 import styled from "styled-components/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import {themeType} from "../../global/theme";
-import {FlatList} from "react-native";
 import {ShoppingList} from "../../interface/interface";
-
+import Animated from "react-native-reanimated";
 
 export const Container = styled.View`
     display: grid;
@@ -26,7 +25,7 @@ export const Footer = styled.View`
 `;
 
 export const WrapperList = styled(
-    FlatList as new () => FlatList<ShoppingList>
+    Animated.FlatList as unknown as new () => Animated.FlatList<ShoppingList>
 ).attrs({
     showsVerticalScrollIndicator: false,
     containerStyle: {

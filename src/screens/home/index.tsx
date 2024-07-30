@@ -14,6 +14,8 @@ import {addShoppingList} from "../../store/modules/shoppingList/actions";
 import {ListRenderItemInfo} from "react-native";
 import {ThemeService} from "../../service/themeService";
 import {setTheme} from "../../store/modules/theme/actions";
+import {MotiView} from "moti";
+import {FadeIn, FadeOut} from "react-native-reanimated";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -51,10 +53,17 @@ export const Home = () => {
 
     const handleRenderListCard = ({ item }: ListRenderItemInfo<ShoppingList>) => {
         return (
-            <ListCard
-                name={item.name}
-                items={item.items}
-            />
+            <MotiView
+                from={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                exit={{ opacity: 0, translateY: -20 }}
+                transition={{type: 'spring'}}
+            >
+                <ListCard
+                    name={item.name}
+                    items={item.items}
+                />
+            </MotiView>
         )
     }
 
@@ -65,6 +74,8 @@ export const Home = () => {
                     data={listCards}
                     keyExtractor={(item: ShoppingList) => item.name}
                     renderItem={handleRenderListCard}
+                    entering={FadeIn}
+                    exiting={FadeOut}
                 />
             </S.Content>
 
