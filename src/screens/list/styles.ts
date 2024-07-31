@@ -15,9 +15,9 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-    color: ${({ theme }: any) => theme.colors.shape};
-    font-size: ${RFPercentage(3)}px;
-    text-align: center;
+    color: ${({ theme }: { theme: themeType }) => theme.colors.primary};
+    font-size: ${RFValue(12)}px;
+    font-weight: bold;
 `;
 
 export const Header = styled.View`
@@ -40,6 +40,7 @@ export const WrapperSugestions = styled(
 ).attrs({
     horizontal: true,
     showsVerticalScrollIndicator: false,
+    showsHorizontalScrollIndicator: false,
     containerStyle: {
         paddingRight: RFPercentage(2),
         paddingLeft: RFPercentage(2)
@@ -48,7 +49,6 @@ export const WrapperSugestions = styled(
         gap: RFPercentage(1)
     }
 })`
-  //margin-top: ${RFPercentage(2)}px;
   width: 100%;
 `;
 

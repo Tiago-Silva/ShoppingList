@@ -67,7 +67,7 @@ export const List = () => {
                     onChangeText={setInputValue}
                 />
                 <S.WrapperList>
-                    <S.TitleButon>Sugestões</S.TitleButon>
+                    <S.Title>Sugestões</S.Title>
                     <S.WrapperSugestions
                         data={suggestions}
                         keyExtractor={(item: Sugestion) => item.id}

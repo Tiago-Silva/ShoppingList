@@ -29,7 +29,7 @@ export const lightTheme: themeType = {
 
 export const darkTheme: themeType = {
     colors: {
-        primary: '#5636D3',
+        primary: '#d0f80a',
         secondary: '#FF872C',
 
         secondary_light: 'rgba(255, 135, 44, 0.3)',
