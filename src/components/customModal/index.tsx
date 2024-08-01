@@ -88,10 +88,11 @@ const CustomModal = ({
 
     return (
         <S.ModalContainer
-            visible={isVisible}
+            isVisible={isVisible}
             animationType='slide'
             transparent={true}
             onBackdropPress={onClose}
+            testID={'modal-backdrop'}
         >
             {renderContent()}
         </S.ModalContainer>
