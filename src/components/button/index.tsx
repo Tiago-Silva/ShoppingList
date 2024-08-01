@@ -13,7 +13,7 @@ const Button = ({
     handleOnPress
 }: Props) => {
     return (
-        <S.Container onPress={handleOnPress} $width={width}>
+        <S.Container onPress={handleOnPress} $width={width} testID={'button-container'}>
             <S.Title>{title}</S.Title>
         </S.Container>
     );

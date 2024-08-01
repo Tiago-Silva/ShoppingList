@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 export const Container = styled.TouchableOpacity<ButtonProps>`
-    width: ${(props: ButtonProps) => props.$width}%;
+    width: ${(props: ButtonProps) => (props.$width ? `${props.$width}%` : 'auto')};
     height: ${RFPercentage(5)}px;
     border: 1px solid ${({ theme }: { theme: themeType }) => theme.colors.gray_01};
     background-color: ${({ theme }: { theme: themeType }) => theme.colors.gray_01};
