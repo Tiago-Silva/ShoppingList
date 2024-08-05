@@ -49,14 +49,5 @@
     "jest-expo": "^51.0.3",
     "typescript": "^5.3.3"
   },
-  "private": true,
-  "jest": {
-    "preset": "jest-expo",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-native/extend-expect"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|@react-native|@react-navigation|@react-native-community|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-native-svg|@moti)"
-    ]
-  }
+  "private": true
 }
