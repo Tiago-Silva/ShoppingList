@@ -6,7 +6,7 @@ import {ItemData} from "../../interface/interface";
 import {ShoppingService} from "../../service/shoppingService";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {updateShoppingList} from "../../store/modules/shoppingList/actions";
-import CustomModal from "../customModal";
+import {CustomModal} from "../customModal";
 
 interface Props {
     name: string;
@@ -96,15 +96,18 @@ const ItemCard = ({
                 <S.Title $isPlayng={isPlaying}>{item.quantity}</S.Title>
             </S.Content>
 
-            <CustomModal
+            <CustomModal.Root
                 isVisible={isVisible}
-                title={'Gerenciar itens'}
                 onClose={handleShowModal}
-                onDelete={handleDeleteItem}
-                isRename={isRename}
-                onRename={handleRename}
-                onInputValue={setInputValue}
-            />
+            >
+                <CustomModal.Rename
+                    title={'Gerenciar itens'}
+                    isRename={isRename}
+                    onRename={handleRename}
+                    onDelete={handleDeleteItem}
+                    onInputValue={setInputValue}
+                />
+            </CustomModal.Root>
         </S.Container>
     );
 };

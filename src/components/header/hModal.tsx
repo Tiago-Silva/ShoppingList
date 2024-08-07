@@ -1,9 +1,9 @@
 import React from 'react';
-import CustomModal from "../customModal";
 import { useAppDispatch } from "../../store/modules/hooks";
 import { setTheme } from "../../store/modules/theme/actions";
 import { ThemeType } from "../../store/modules/theme/type";
 import { ThemeService } from "../../service/themeService";
+import {CustomModal} from "../customModal";
 
 interface Props {
     isVisible?: boolean;
@@ -20,13 +20,9 @@ const HModal = ({ isVisible = false, onShowModal }: Props) => {
     };
 
     return (
-        <CustomModal
-            isVisible={isVisible}
-            title={'Escolha um tema'}
-            onClose={onShowModal}
-            isTheme={true}
-            onSelectTheme={handleSelectTheme}
-        />
+        <CustomModal.Root isVisible={isVisible} onClose={onShowModal}>
+            <CustomModal.Theme title={'Escolha um tema'} onSelectTheme={handleSelectTheme} />
+        </CustomModal.Root>
     );
 };
 

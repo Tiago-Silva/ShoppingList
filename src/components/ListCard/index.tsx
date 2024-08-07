@@ -9,7 +9,7 @@ import {useNavigation} from "@react-navigation/native";
 import {ShoppingService} from "../../service/shoppingService";
 import {deleteShoppingList, updateShoppingListName} from "../../store/modules/shoppingList/actions";
 import {useAppDispatch} from "../../store/modules/hooks";
-import CustomModal from "../customModal";
+import {CustomModal} from "../customModal";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -69,15 +69,18 @@ const ListCard = ({
                 />
             </S.Footer>
 
-            <CustomModal
+            <CustomModal.Root
                 isVisible={isModalVisible}
-                title={'Gerenciar lista'}
                 onClose={handleShowModal}
-                onDelete={handleDeleteList}
-                isRename={isRename}
-                onRename={handleRename}
-                onInputValue={setInputValue}
-            />
+            >
+                <CustomModal.Rename
+                    title={'Gerenciar lista'}
+                    isRename={isRename}
+                    onRename={handleRename}
+                    onDelete={handleDeleteList}
+                    onInputValue={setInputValue}
+                />
+            </CustomModal.Root>
         </S.Container>
     );
 };
