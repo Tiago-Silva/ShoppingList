@@ -6,6 +6,7 @@ import { Header } from "../components/header";
 import CheckItems from "../screens/checkItems";
 import AddItems from "../screens/addItems";
 import HInput from "../components/header/hInput";
+import {ShoppingList} from "../interface/interface";
 
 const Stack = createStackNavigator();
 
@@ -56,10 +57,12 @@ export const Routes = () => {
                     options={{
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {
+                            const routeParams = route.params as ShoppingList;
+                            const name = routeParams?.name || 'Itens';
                             return (
                                 <Header.Root background={'background_card'}>
                                     <Header.Left onNavigation={navigation.goBack} />
-                                    <Header.Title name="Itens" />
+                                    <Header.Title name={name} />
                                     <Header.Right onShowModal={() => {}} />
                                     <Header.Modal isVisible={false} onShowModal={() => {}} />
                                 </Header.Root>
