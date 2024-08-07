@@ -5,7 +5,7 @@ import { List } from "../screens/list";
 import { Header } from "../components/header";
 import CheckItems from "../screens/checkItems";
 import AddItems from "../screens/addItems";
-import HeaderItem from "../components/header/headerItem";
+import HInput from "../components/header/hInput";
 
 const Stack = createStackNavigator();
 
@@ -74,10 +74,10 @@ export const Routes = () => {
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {
                             return (
-                                <HeaderItem
-                                    onNavigation={navigation.goBack}
-                                    background={'background_card'}
-                                />
+                                <Header.Root background={'background_card'}>
+                                    <Header.Left onNavigation={navigation.goBack} />
+                                    <Header.Input />
+                                </Header.Root>
                             );
                         }
                     }}
