@@ -1,8 +1,8 @@
-import {Home} from "../screens/home";
-import {NavigationContainer} from "@react-navigation/native";
-import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
-import {List} from "../screens/list";
-import Header from "../components/header";
+import { Home } from "../screens/home";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
+import { List } from "../screens/list";
+import { Header } from "../components/header";
 import CheckItems from "../screens/checkItems";
 import AddItems from "../screens/addItems";
 import HeaderItem from "../components/header/headerItem";
@@ -23,7 +23,13 @@ export const Routes = () => {
                     options={{
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {
-                            return <Header isShow={true} />
+                            return (
+                                <Header.Root>
+                                    <Header.Title name="Home" />
+                                    <Header.Right onShowModal={() => {}} />
+                                    <Header.Modal isVisible={false} onShowModal={() => {}} />
+                                </Header.Root>
+                            );
                         }
                     }}
                 />
@@ -33,7 +39,14 @@ export const Routes = () => {
                     options={{
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {
-                            return <Header isShow={false} onNavigation={navigation.goBack} />
+                            return (
+                                <Header.Root>
+                                    <Header.Left onNavigation={navigation.goBack} />
+                                    <Header.Title name="Lista" />
+                                    <Header.Right onShowModal={() => {}} />
+                                    <Header.Modal isVisible={false} onShowModal={() => {}} />
+                                </Header.Root>
+                            );
                         }
                     }}
                 />
@@ -44,12 +57,13 @@ export const Routes = () => {
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {
                             return (
-                                <Header
-                                    isShow={true}
-                                    onNavigation={navigation.goBack}
-                                    background={'background_card'}
-                                />
-                            )
+                                <Header.Root background={'background_card'}>
+                                    <Header.Left onNavigation={navigation.goBack} />
+                                    <Header.Title name="Itens" />
+                                    <Header.Right onShowModal={() => {}} />
+                                    <Header.Modal isVisible={false} onShowModal={() => {}} />
+                                </Header.Root>
+                            );
                         }
                     }}
                 />
@@ -64,11 +78,11 @@ export const Routes = () => {
                                     onNavigation={navigation.goBack}
                                     background={'background_card'}
                                 />
-                            )
+                            );
                         }
                     }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
-    )
-}
+    );
+};
