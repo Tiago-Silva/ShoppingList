@@ -5,12 +5,12 @@ import {inputValue} from "../../store/modules/shoppingList/actions";
 import {useAppDispatch, useAppSelector} from "../../store/modules/hooks";
 
 interface Props {
-    handleNavigation?: () => void;
+    onNavigation?: () => void;
     background?: string;
 }
 
 const HeaderItem = ({
-    handleNavigation,
+    onNavigation,
     background = 'background_header'
 }: Props) => {
     const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ const HeaderItem = ({
 
     return (
         <S.Container $background={background}>
-            <S.Icon name="arrow-left" onPress={handleNavigation}/>
+            <S.Icon name="arrow-left" onPress={onNavigation}/>
             <Input
                 placeholder={'Nome do item'}
                 height={4}

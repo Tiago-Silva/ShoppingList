@@ -14,13 +14,13 @@ type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 
 interface Props {
     isShow: boolean;
-    handleNavigation?: () => void;
+    onNavigation?: () => void;
     background?: string;
 }
 
 const Header = ({
     isShow,
-    handleNavigation,
+    onNavigation,
     background = 'background_header'
 }: Props) => {
     const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ const Header = ({
         if (isShow) {
             return (
                 <>
-                    {name !== 'Minhas Listas' && <S.Icon name="arrow-left" onPress={handleNavigation}/>}
+                    {name !== 'Minhas Listas' && <S.Icon name="arrow-left" onPress={onNavigation}/>}
                     <S.Title>{name}</S.Title>
                     <S.WrapperIcon>
                         <IconAnimation
@@ -55,7 +55,7 @@ const Header = ({
                 </>
             );
         } else {
-            return <S.Icon name="arrow-left" onPress={handleNavigation}/>;
+            return <S.Icon name="arrow-left" onPress={onNavigation}/>;
         }
     };
 
@@ -72,7 +72,7 @@ const Header = ({
                 title={'Ecolha um tema'}
                 onClose={handleShowModal}
                 isTheme={true}
-                handleSelectTheme={handleSelectTheme}
+                onSelectTheme={handleSelectTheme}
             />
         </S.Container>
     );

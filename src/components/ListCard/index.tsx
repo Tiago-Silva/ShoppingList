@@ -73,10 +73,10 @@ const ListCard = ({
                 isVisible={isModalVisible}
                 title={'Gerenciar lista'}
                 onClose={handleShowModal}
-                handleDelete={handleDeleteList}
+                onDelete={handleDeleteList}
                 isRename={isRename}
-                handleRename={handleRename}
-                handleInputValue={setInputValue}
+                onRename={handleRename}
+                onInputValue={setInputValue}
             />
         </S.Container>
     );

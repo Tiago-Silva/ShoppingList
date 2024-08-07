@@ -33,7 +33,7 @@ export const Routes = () => {
                     options={{
                         headerShown: true,
                         header: ({ navigation, route, options, back }) => {
-                            return <Header isShow={false} handleNavigation={navigation.goBack} />
+                            return <Header isShow={false} onNavigation={navigation.goBack} />
                         }
                     }}
                 />
@@ -46,7 +46,7 @@ export const Routes = () => {
                             return (
                                 <Header
                                     isShow={true}
-                                    handleNavigation={navigation.goBack}
+                                    onNavigation={navigation.goBack}
                                     background={'background_card'}
                                 />
                             )
@@ -61,7 +61,7 @@ export const Routes = () => {
                         header: ({ navigation, route, options, back }) => {
                             return (
                                 <HeaderItem
-                                    handleNavigation={navigation.goBack}
+                                    onNavigation={navigation.goBack}
                                     background={'background_card'}
                                 />
                             )

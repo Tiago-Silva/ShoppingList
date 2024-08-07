@@ -7,24 +7,24 @@ interface Props {
     isVisible: boolean;
     title: string;
     onClose: () => void;
-    handleDelete?: () => void;
+    onDelete?: () => void;
     isRename?: boolean;
     isTheme?: boolean;
-    handleRename?: () => void;
-    handleInputValue?: (value: string) => void;
-    handleSelectTheme?: (value: ThemeType) => void;
+    onRename?: () => void;
+    onInputValue?: (value: string) => void;
+    onSelectTheme?: (value: ThemeType) => void;
 }
 
 const CustomModal = ({
     isVisible,
     title,
     onClose,
-    handleDelete,
+    onDelete,
     isRename = false,
     isTheme = false,
-    handleRename,
-    handleInputValue,
-    handleSelectTheme
+    onRename,
+    onInputValue,
+    onSelectTheme
 }: Props) => {
 
     const renderContent = () => {
@@ -33,7 +33,7 @@ const CustomModal = ({
                 <S.Content>
                     <S.Title $size={3}>{title}</S.Title>
 
-                    <S.Line onPress={handleRename}>
+                    <S.Line onPress={onRename}>
                         <S.Icon name={'edit-2'} />
                         {!isRename ? (
                             <S.Title $size={2}>Renomear</S.Title>
@@ -43,12 +43,12 @@ const CustomModal = ({
                                 height={4}
                                 width={30}
                                 fontSize={12}
-                                onChangeText={handleInputValue}
+                                onChangeText={onInputValue}
                             />
                         )}
                     </S.Line>
 
-                    <S.Line onPress={handleDelete}>
+                    <S.Line onPress={onDelete}>
                         <S.Icon $color={'attention'} name={'trash-2'} />
                         <S.Title
                             $size={2}
@@ -64,7 +64,7 @@ const CustomModal = ({
                 <S.Content>
                     <S.Title $size={3}>{title}</S.Title>
 
-                    <S.Line onPress={() => handleSelectTheme ? handleSelectTheme('dark') : {}}>
+                    <S.Line onPress={() => onSelectTheme ? onSelectTheme('dark') : {}}>
                         <S.Icon name={'moon'} />
                         <S.Title
                             $size={2}
@@ -73,7 +73,7 @@ const CustomModal = ({
                         </S.Title>
                     </S.Line>
 
-                    <S.Line onPress={() => handleSelectTheme ? handleSelectTheme('light') : {}}>
+                    <S.Line onPress={() => onSelectTheme ? onSelectTheme('light') : {}}>
                         <S.Icon name={'sun'} />
                         <S.Title
                             $size={2}

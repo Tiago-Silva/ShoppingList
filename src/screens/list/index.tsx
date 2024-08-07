@@ -77,7 +77,7 @@ export const List = () => {
             </S.Header>
 
             <S.Footer>
-                <Button title={'CRIAR'} handleOnPress={handleCreateList} />
+                <Button title={'CRIAR'} onPress={handleCreateList} />
             </S.Footer>
         </S.Container>
     );

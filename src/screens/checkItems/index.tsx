@@ -72,7 +72,7 @@ const CheckItems = () => {
                 <Button
                     title={'+ ADICIONAR'}
                     width={50}
-                    handleOnPress={handleNavigationAddItem}
+                    onPress={handleNavigationAddItem}
                 />
             </S.Footer>
         </S.Container>

@@ -4,16 +4,16 @@ import * as S from "./styles";
 interface Props {
     title: string;
     width?: number;
-    handleOnPress: () => void;
+    onPress: () => void;
 }
 
 const Button = ({
     title,
     width = 100,
-    handleOnPress
+    onPress
 }: Props) => {
     return (
-        <S.Container onPress={handleOnPress} $width={width} testID={'button-container'}>
+        <S.Container onPress={onPress} $width={width} testID={'button-container'}>
             <S.Title>{title}</S.Title>
         </S.Container>
     );

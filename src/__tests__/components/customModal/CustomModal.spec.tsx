@@ -31,7 +31,7 @@ describe('CustomModal Component', () => {
 
     it('calls handleDelete when delete button is pressed', () => {
         const handleDelete = jest.fn();
-        const { getByText } = renderWithTheme(<CustomModal isVisible={true} title="Modal Title" onClose={() => {}} handleDelete={handleDelete} />);
+        const { getByText } = renderWithTheme(<CustomModal isVisible={true} title="Modal Title" onClose={() => {}} onDelete={handleDelete} />);
         act(() => {
             fireEvent.press(getByText('Excluir'));
             expect(handleDelete).toHaveBeenCalled();
@@ -40,7 +40,7 @@ describe('CustomModal Component', () => {
 
     it('calls handleRename when rename button is pressed', () => {
         const handleRename = jest.fn();
-        const { getByText } = renderWithTheme(<CustomModal isVisible={true} title="Modal Title" onClose={() => {}} handleRename={handleRename} />);
+        const { getByText } = renderWithTheme(<CustomModal isVisible={true} title="Modal Title" onClose={() => {}} onRename={handleRename} />);
         act(() => {
             fireEvent.press(getByText('Renomear'));
             expect(handleRename).toHaveBeenCalled();
@@ -49,7 +49,7 @@ describe('CustomModal Component', () => {
 
     it('calls handleSelectTheme when a theme is selected', () => {
         const handleSelectTheme = jest.fn();
-        const { getByText } = renderWithTheme(<CustomModal isVisible={true} title="Modal Title" onClose={() => {}} handleSelectTheme={handleSelectTheme} isTheme={true} />);
+        const { getByText } = renderWithTheme(<CustomModal isVisible={true} title="Modal Title" onClose={() => {}} onSelectTheme={handleSelectTheme} isTheme={true} />);
         act(() => {
             fireEvent.press(getByText('Dark'));
             expect(handleSelectTheme).toHaveBeenCalledWith('dark');

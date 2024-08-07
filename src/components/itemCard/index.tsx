@@ -100,10 +100,10 @@ const ItemCard = ({
                 isVisible={isVisible}
                 title={'Gerenciar itens'}
                 onClose={handleShowModal}
-                handleDelete={handleDeleteItem}
+                onDelete={handleDeleteItem}
                 isRename={isRename}
-                handleRename={handleRename}
-                handleInputValue={setInputValue}
+                onRename={handleRename}
+                onInputValue={setInputValue}
             />
         </S.Container>
     );
