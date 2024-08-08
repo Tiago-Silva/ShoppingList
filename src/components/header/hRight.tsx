@@ -1,15 +1,14 @@
 import React from 'react';
 import * as S from "./styles";
 import IconAnimation from "../animation/IconAnimation";
-import { useSelector } from "react-redux";
-import { ThemeState } from "../../store/modules/theme/type";
+import {ThemeService} from "../../service/themeService";
 
 interface Props {
     onShowModal: () => void;
 }
 
 const HRight = ({ onShowModal }: Props) => {
-    const theme = useSelector<ThemeState>((state: any) => state.theme.currentTheme);
+    const theme = ThemeService.handleGetThemeToRedux();
 
     return (
         <S.WrapperIcon>

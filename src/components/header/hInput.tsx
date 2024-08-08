@@ -1,15 +1,9 @@
 import React from 'react';
 import {Input} from "../input";
-import {inputValue} from "../../store/modules/shoppingList/actions";
-import {useAppDispatch, useAppSelector} from "../../store/modules/hooks";
+import {HeaderService} from "../../service/headerService";
 
 const HInput = () => {
-    const dispatch = useAppDispatch();
-    const changeValue = useAppSelector((state) => state.cart?.inputValue);
-
-    const handleInputChanges = (value: string) => {
-      dispatch(inputValue(value));
-    };
+    const {changeValue, handleInputChanges} = HeaderService.handleInput();
 
     return (
         <Input

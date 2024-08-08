@@ -1,9 +1,6 @@
 import React from 'react';
-import { useAppDispatch } from "../../store/modules/hooks";
-import { setTheme } from "../../store/modules/theme/actions";
-import { ThemeType } from "../../store/modules/theme/type";
-import { ThemeService } from "../../service/themeService";
 import {CustomModal} from "../customModal";
+import {HeaderService} from "../../service/headerService";
 
 interface Props {
     isVisible?: boolean;
@@ -11,13 +8,7 @@ interface Props {
 }
 
 const HModal = ({ isVisible = false, onShowModal }: Props) => {
-    const dispatch = useAppDispatch();
-
-    const handleSelectTheme = (value: ThemeType) => {
-        ThemeService.setTheme(value).then(() => {});
-        dispatch(setTheme({ currentTheme: value }));
-        onShowModal();
-    };
+    const handleSelectTheme = HeaderService.handleSelectTheme(onShowModal);
 
     return (
         <CustomModal.Root isVisible={isVisible} onClose={onShowModal}>

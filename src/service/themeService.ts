@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {ThemeType} from "../store/modules/theme/type";
+import {ThemeState, ThemeType} from "../store/modules/theme/type";
+import {useSelector} from "react-redux";
 
 
 export const ThemeService = {
@@ -26,5 +27,9 @@ export const ThemeService = {
         } catch (error) {
             console.error('Erro ao salvar o tema no AsyncStorage', error);
         }
+    },
+
+    handleGetThemeToRedux: () => {
+        return useSelector<ThemeState>((state: any) => state.theme.currentTheme);
     }
 }
