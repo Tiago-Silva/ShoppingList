@@ -10,7 +10,7 @@ import {RootStackParamList} from "../../types/types";
 import {useNavigation} from "@react-navigation/native";
 import IconAnimation from "../../components/animation/IconAnimation";
 import {useAppDispatch} from "../../store/modules/hooks";
-import {addShoppingList} from "../../store/modules/shoppingList/actions";
+import {StorageService} from "../../service/storageService";
 
 const suggestions: Sugestion[] = [
     { id: 1, title: 'Compras' },
@@ -24,9 +24,10 @@ const suggestions: Sugestion[] = [
 ];
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
+const storageService = new StorageService();
 
 export const List = () => {
-    const dispatch = useAppDispatch();
+    const shoppingService = new ShoppingService(storageService, useAppDispatch());
     const [inputValue, setInputValue] = useState('')
     const navigation = useNavigation<NavigationProp>();
 
@@ -47,8 +48,8 @@ export const List = () => {
             name: inputValue,
             items: []
         }
-        await ShoppingService.save(AddList);
-        dispatch(addShoppingList(AddList));
+        await shoppingService.save(AddList);
+        shoppingService.addListInReducer(AddList);
         navigation.navigate({name: 'Home', params: {} });
     }
 

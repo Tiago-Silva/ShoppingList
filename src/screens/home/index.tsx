@@ -10,9 +10,7 @@ import {ShoppingService} from "../../service/shoppingService";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {useSelector} from "react-redux";
 import {IState} from "../../store/modules/shoppingList/type";
-import {addShoppingList} from "../../store/modules/shoppingList/actions";
 import {ListRenderItemInfo} from "react-native";
-import {setTheme} from "../../store/modules/theme/actions";
 import {MotiView} from "moti";
 import {FadeIn, FadeOut} from "react-native-reanimated";
 import {StorageService} from "../../service/storageService";
@@ -25,38 +23,41 @@ const themeService = new ThemeService(storageService);
 
 export const Home = () => {
     const navigation = useNavigation<NavigationProp>();
-
-    const dispatch = useAppDispatch();
-    const shoppingService = new ShoppingService(storageService, dispatch);
+    const shoppingService = new ShoppingService(storageService, useAppDispatch());
 
     const listCards = useSelector<IState, ShoppingList[]>((state) => state.cart.shoppingArrayList);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleNavigation = () => {
         navigation.navigate({name: 'List', params: {} });
     }
 
     const fetchLists = useCallback(async () => {
-        const lists = await shoppingService.getAll();
-        const theme = await themeService.getTheme();
-        if (lists && lists.length > 0) {
-            lists.forEach((list: ShoppingList) => {
-                if (list.name.length > 0) {
-                    dispatch(addShoppingList(list));
-                }
-            });
+        try {
+            const lists = await shoppingService.getAll();
+            const theme = await themeService.getTheme();
+            if (lists && lists.length > 0) {
+                lists.forEach((list: ShoppingList) => {
+                    if (list.name.length > 0) {
+                        shoppingService.addListInReducer(list);
+                    }
+                });
+            }
+            if (theme) {
+                shoppingService.setThemeInReducer(theme);
+            }
+        } catch (error) {
+            console.error('Erro ao buscar listas e tema:', error);
+        } finally {
+            setIsLoading(false);
         }
-        if (theme) {
-            dispatch(setTheme({currentTheme: theme}));
-        }
-        setIsLoaded(true);
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
-        if (!isLoaded) {
+        if (isLoading) {
             fetchLists().then(() => {});
         }
-    }, [isLoaded, fetchLists]);
+    }, [fetchLists]);
 
     const handleRenderListCard = ({ item }: ListRenderItemInfo<ShoppingList>) => {
         return (

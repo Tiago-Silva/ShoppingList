@@ -1,16 +1,19 @@
 import React from 'react';
 import * as S from './styles';
-import {useAppDispatch, useAppSelector} from "../../store/modules/hooks";
+import {useAppDispatch} from "../../store/modules/hooks";
 import {ShoppingService} from "../../service/shoppingService";
 import {RouteProp, useRoute} from "@react-navigation/native";
 import {HeaderRouteParams} from "../../types/types";
-import {clearInputValue, updateShoppingList} from "../../store/modules/shoppingList/actions";
+import {StorageService} from "../../service/storageService";
 
 type HeaderRouteProp = RouteProp<{ params: HeaderRouteParams }, 'params'>;
 
+const storageService = new StorageService();
+
 const AddItems = () => {
-    const dispatch = useAppDispatch();
-    const inputValue = useAppSelector((state) => state.cart?.inputValue);
+    const shoppingService = new ShoppingService(storageService, useAppDispatch());
+
+    const inputValue = shoppingService.getInputValue();
     const name = useRoute<HeaderRouteProp>().params?.name || '';
 
     const handleAddItem = async () => {
@@ -18,7 +21,7 @@ const AddItems = () => {
             return;
         }
 
-        await ShoppingService.addItem(
+        await shoppingService.addItem(
             name,
             {
                 name: inputValue,
@@ -27,9 +30,9 @@ const AddItems = () => {
                 checked: false
             }
         );
-        dispatch(clearInputValue());
-        const updatedShoppingList = await ShoppingService.getShoppingList(name);
-        dispatch(updateShoppingList(updatedShoppingList));
+        shoppingService.clearInputValue();
+        const updatedShoppingList = await shoppingService.getShoppingList(name);
+        shoppingService.updateListInReducer(updatedShoppingList);
     }
 
     return (

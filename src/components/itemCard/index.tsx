@@ -19,8 +19,7 @@ const ItemCard = ({
     name,
     item,
 }: Props) => {
-    const dispatch = useAppDispatch();
-    const shoppingService = new ShoppingService(storageService, dispatch);
+    const shoppingService = new ShoppingService(storageService, useAppDispatch());
 
     const animationRef = useRef<LottieView>(null);
     const [isPlaying, setIsPlaying] = useState(item.checked || false);

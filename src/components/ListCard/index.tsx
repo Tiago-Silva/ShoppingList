@@ -7,7 +7,6 @@ import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../types/types";
 import {useNavigation} from "@react-navigation/native";
 import {ShoppingService} from "../../service/shoppingService";
-import {deleteShoppingList, updateShoppingListName} from "../../store/modules/shoppingList/actions";
 import {useAppDispatch} from "../../store/modules/hooks";
 import {CustomModal} from "../customModal";
 import {StorageService} from "../../service/storageService";
@@ -22,10 +21,7 @@ const ListCard = ({
 }: ShoppingList) => {
     const theme = useTheme();
     const navigation = useNavigation<NavigationProp>();
-
-    const dispatch = useAppDispatch();
-    const shoppingService = new ShoppingService(storageService, dispatch);
-
+    const shoppingService = new ShoppingService(storageService, useAppDispatch());
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isRename, setIsRename] = useState(false);
     const [inputValue, setInputValue] = useState('');
@@ -42,14 +38,14 @@ const ListCard = ({
 
     const handleDeleteList = async () => {
         await shoppingService.delete(name).then(() => {});
-        dispatch(deleteShoppingList({name: name, items: []}));
+        shoppingService.deleteListInReducer({name: name, items: []});
         setIsModalVisible(false);
     }
 
     const handleRename = async () => {
         if (isRename) {
             await shoppingService.updateShoppingListName(name, inputValue).then(() => {});
-            dispatch(updateShoppingListName(name, inputValue));
+            shoppingService.updateListNameInReducer(name, inputValue);
             setIsModalVisible(false);
             setIsRename(false);
             setInputValue('');
