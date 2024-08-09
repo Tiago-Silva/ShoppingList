@@ -1,13 +1,15 @@
-import {useAppDispatch, useAppSelector} from "../store/modules/hooks";
-import {inputValue} from "../store/modules/shoppingList/actions";
-import {ThemeType} from "../store/modules/theme/type";
-import {ThemeService} from "./themeService";
-import {setTheme} from "../store/modules/theme/actions";
+import { useAppDispatch, useAppSelector } from "../store/modules/hooks";
+import { inputValue } from "../store/modules/shoppingList/actions";
+import { IHeaderService, IThemeService } from "../interface/interface";
 
+export class HeaderService implements IHeaderService {
+    private themeService: IThemeService;
 
-export const HeaderService = {
+    constructor(themeService: IThemeService) {
+        this.themeService = themeService;
+    }
 
-    handleInput: () => {
+    handleInput() {
         const dispatch = useAppDispatch();
         const changeValue = useAppSelector((state) => state.cart?.inputValue);
 
@@ -19,16 +21,13 @@ export const HeaderService = {
             changeValue,
             handleInputChanges,
         };
-    },
-
-    handleSelectTheme: (onShowModal: () => void) => {
-        const dispatch = useAppDispatch();
-
-        return (value: ThemeType) => {
-            ThemeService.setTheme(value).then(() => {});
-            dispatch(setTheme({ currentTheme: value }));
-            onShowModal();
-        };
     }
 
+    handleSelectTheme(onShowModal: () => void) {
+        return this.themeService.handleSelectTheme(onShowModal);
+    }
+
+    getThemeFromRedux() {
+        return this.themeService.getThemeFromRedux();
+    }
 }

@@ -1,17 +1,24 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import {ThemeState, ThemeType} from "../store/modules/theme/type";
-import {useSelector} from "react-redux";
+import { ThemeType } from "../store/modules/theme/type";
+import { useAppDispatch } from "../store/modules/hooks";
+import { setTheme } from "../store/modules/theme/actions";
+import { useSelector } from 'react-redux';
+import { ThemeState } from '../store/modules/theme/type';
+import {IStorageService, IThemeService} from "../interface/interface";
 
+export class ThemeService implements IThemeService {
+    private storageService: IStorageService;
 
-export const ThemeService = {
-    getTheme: async (): Promise<ThemeType> => {
+    constructor(storageService: IStorageService) {
+        this.storageService = storageService;
+    }
+
+    async getTheme(): Promise<ThemeType> {
         try {
-            const theme = await AsyncStorage.getItem('theme');
-
+            const theme = await this.storageService.getItem('theme');
             if (!theme) {
-                await AsyncStorage.setItem('theme', 'dark');
+                await this.storageService.setItem('theme', 'dark');
+                return 'dark';
             }
-
             if (theme === 'dark' || theme === 'light') {
                 return theme;
             }
@@ -20,16 +27,31 @@ export const ThemeService = {
             console.error('Erro ao buscar o tema no AsyncStorage', error);
             throw error;
         }
-    },
-    setTheme: async (theme: ThemeType) => {
+    }
+
+    async setTheme(theme: string): Promise<void> {
         try {
-            await AsyncStorage.setItem('theme', theme);
+            await this.storageService.setItem('theme', theme);
         } catch (error) {
             console.error('Erro ao salvar o tema no AsyncStorage', error);
         }
-    },
+    }
 
-    handleGetThemeToRedux: () => {
-        return useSelector<ThemeState>((state: any) => state.theme.currentTheme);
+    handleGetThemeToRedux(): string {
+        return useSelector<ThemeState, ThemeState['currentTheme']>((state) => state.currentTheme);
+    }
+
+    handleSelectTheme(onShowModal: () => void) {
+        const dispatch = useAppDispatch();
+
+        return (value: ThemeType) => {
+            this.setTheme(value).then(() => {});
+            dispatch(setTheme({ currentTheme: value }));
+            onShowModal();
+        };
+    }
+
+    getThemeFromRedux() {
+        return this.handleGetThemeToRedux();
     }
 }
