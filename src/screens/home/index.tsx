@@ -12,12 +12,16 @@ import {useSelector} from "react-redux";
 import {IState} from "../../store/modules/shoppingList/type";
 import {addShoppingList} from "../../store/modules/shoppingList/actions";
 import {ListRenderItemInfo} from "react-native";
-import {ThemeService} from "../../service/themeService";
 import {setTheme} from "../../store/modules/theme/actions";
 import {MotiView} from "moti";
 import {FadeIn, FadeOut} from "react-native-reanimated";
+import {StorageService} from "../../service/storageService";
+import {ThemeService} from "../../service/themeService";
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
+
+const storageService = new StorageService();
+const themeService = new ThemeService(storageService);
 
 export const Home = () => {
     const navigation = useNavigation<NavigationProp>();
@@ -31,7 +35,7 @@ export const Home = () => {
 
     const fetchLists = useCallback(async () => {
         const lists = await ShoppingService.getAll();
-        const theme = await ThemeService.getTheme();
+        const theme = await themeService.getTheme();
         if (lists.length > 0) {
             lists.forEach((list: ShoppingList) => {
                 if (list.name.length > 0) {
