@@ -25,7 +25,10 @@ const themeService = new ThemeService(storageService);
 
 export const Home = () => {
     const navigation = useNavigation<NavigationProp>();
+
     const dispatch = useAppDispatch();
+    const shoppingService = new ShoppingService(storageService, dispatch);
+
     const listCards = useSelector<IState, ShoppingList[]>((state) => state.cart.shoppingArrayList);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -34,9 +37,9 @@ export const Home = () => {
     }
 
     const fetchLists = useCallback(async () => {
-        const lists = await ShoppingService.getAll();
+        const lists = await shoppingService.getAll();
         const theme = await themeService.getTheme();
-        if (lists.length > 0) {
+        if (lists && lists.length > 0) {
             lists.forEach((list: ShoppingList) => {
                 if (list.name.length > 0) {
                     dispatch(addShoppingList(list));

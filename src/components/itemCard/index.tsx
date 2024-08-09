@@ -5,19 +5,23 @@ import LottieView from "lottie-react-native";
 import {ItemData} from "../../interface/interface";
 import {ShoppingService} from "../../service/shoppingService";
 import {useAppDispatch} from "../../store/modules/hooks";
-import {updateShoppingList} from "../../store/modules/shoppingList/actions";
 import {CustomModal} from "../customModal";
+import {StorageService} from "../../service/storageService";
 
 interface Props {
     name: string;
     item: ItemData;
 }
 
+const storageService = new StorageService();
+
 const ItemCard = ({
     name,
     item,
 }: Props) => {
     const dispatch = useAppDispatch();
+    const shoppingService = new ShoppingService(storageService, dispatch);
+
     const animationRef = useRef<LottieView>(null);
     const [isPlaying, setIsPlaying] = useState(item.checked || false);
     const [isVisible, setIsVisible] = useState(false);
@@ -35,15 +39,15 @@ const ItemCard = ({
     };
 
     const updateListInReducer = async () => {
-        const updatedShoppingList = await ShoppingService.getShoppingList(name);
-        dispatch(updateShoppingList(updatedShoppingList));
+        const updatedShoppingList = await shoppingService.getShoppingList(name);
+        shoppingService.updateListInReducer(updatedShoppingList);
     }
 
     const handleUpdateItem = async () => {
         handleAnimationIcon();
 
         const updatedItem = { ...item, checked: isPlaying }
-        await ShoppingService.updateItem(name, updatedItem);
+        await shoppingService.updateItem(name, updatedItem);
 
         await updateListInReducer();
     }
@@ -58,7 +62,7 @@ const ItemCard = ({
     }
 
     const handleDeleteItem = async () => {
-        await ShoppingService.deleteItemFromList(name, item);
+        await shoppingService.deleteItemFromList(name, item.name);
         await updateListInReducer();
 
         setIsVisible(false);
@@ -67,7 +71,7 @@ const ItemCard = ({
     const handleRename = async () => {
         if (isRename) {
             const updatedItem = { ...item, name: inputValue }
-            await ShoppingService.updateItemName(name, item, updatedItem);
+            await shoppingService.updateItemName(name, item, updatedItem);
             await updateListInReducer();
             setIsVisible(false);
             setInputValue('');
