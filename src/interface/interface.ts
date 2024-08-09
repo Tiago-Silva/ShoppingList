@@ -51,4 +51,10 @@ export interface IShoppingService {
     getShoppingList(listName: string): Promise<ShoppingList | undefined>;
     deleteItemFromList(listName: string, itemName: string): Promise<void>;
     updateListInReducer(list: ShoppingList | undefined): void;
+    clearInputValue(): void;
+    getInputValue(): string | undefined;
+    addListInReducer(list: ShoppingList): void;
+    updateListNameInReducer(oldName: string, newName: string): void;
+    deleteListInReducer(list: ShoppingList): void;
+    setThemeInReducer(theme: ThemeType): void;
 }
