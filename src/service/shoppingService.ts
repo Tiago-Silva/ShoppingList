@@ -1,6 +1,13 @@
 import {IShoppingService, IStorageService, ItemData, ShoppingList} from "../interface/interface";
-import {useAppDispatch} from "../store/modules/hooks";
-import {updateShoppingList} from "../store/modules/shoppingList/actions";
+import {useAppDispatch, useAppSelector} from "../store/modules/hooks";
+import {
+    addShoppingList,
+    clearInputValue, deleteShoppingList,
+    updateShoppingList,
+    updateShoppingListName
+} from "../store/modules/shoppingList/actions";
+import {ThemeType} from "../store/modules/theme/type";
+import {setTheme} from "../store/modules/theme/actions";
 
 
 export class ShoppingService implements IShoppingService {
@@ -155,5 +162,29 @@ export class ShoppingService implements IShoppingService {
         if (list) {
             this.dispatch(updateShoppingList(list));
         }
+    }
+
+    clearInputValue(): void {
+        this.dispatch(clearInputValue());
+    }
+
+    getInputValue(): string | undefined {
+        return useAppSelector((state) => state.cart?.inputValue);
+    }
+
+    addListInReducer(list: ShoppingList): void {
+        this.dispatch(addShoppingList(list));
+    }
+
+    updateListNameInReducer(oldName: string, newName: string): void {
+        this.dispatch(updateShoppingListName(oldName, newName));
+    }
+
+    deleteListInReducer(list: ShoppingList): void {
+        this.dispatch(deleteShoppingList(list));
+    }
+
+    setThemeInReducer(theme: ThemeType): void {
+        this.dispatch(setTheme({currentTheme: theme}));
     }
 }
