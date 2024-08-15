@@ -6,7 +6,11 @@ interface Props {
 }
 
 const HLeft = ({ onNavigation }: Props) => {
-    return <S.Icon name="arrow-left" onPress={onNavigation} />;
+    return (
+        <S.WrapperTouchIcon onPress={onNavigation} testID="left-icon">
+            <S.Icon name="arrow-left" />
+        </S.WrapperTouchIcon>
+    );
 };
 
 export default HLeft;
