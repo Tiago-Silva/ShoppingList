@@ -28,6 +28,7 @@ export const Input = ({
             $width={width}
             $fontSize={fontSize}
             {...rest}
+            testID={'input'}
         />
     );
 };
