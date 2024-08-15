@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, fireEvent, act, cleanup } from '@testing-library/react-native';
 import { CustomModal } from '../../../components/customModal';
-import { ThemeProvider } from 'styled-components/native';
-import { darkTheme } from '../../../global/theme';
+import {Providers} from "../../../providers/Providers";
 
+jest.mock('@react-native-async-storage/async-storage');
 const renderWithTheme = (component: React.ReactElement) => {
-    return render(<ThemeProvider theme={darkTheme}>{component}</ThemeProvider>);
+    return render(<Providers>{component}</Providers>);
 };
 
 describe('CustomModal Component', () => {

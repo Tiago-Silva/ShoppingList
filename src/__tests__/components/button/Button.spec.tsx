@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import Button from "../../../components/button";
-import { ThemeProvider } from 'styled-components/native';
-import {darkTheme} from "../../../global/theme";
+import {Providers} from "../../../providers/Providers";
 
+jest.mock('@react-native-async-storage/async-storage');
 const renderWithTheme = (component: React.ReactElement) => {
-    return render(<ThemeProvider theme={darkTheme}>{component}</ThemeProvider>);
+    return render(<Providers>{component}</Providers>);
 };
 
 describe('Button Component', () => {
