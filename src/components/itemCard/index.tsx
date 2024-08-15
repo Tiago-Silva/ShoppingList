@@ -82,7 +82,7 @@ const ItemCard = ({
     return (
         <S.Container $isPlayng={isPlaying} onLongPress={handleShowModal}>
             <S.Content>
-                <S.WrapperIcon onPress={handleUpdateItem}>
+                <S.WrapperIcon onPress={handleUpdateItem} testID="icon-button">
                     <IconAnimation
                         animationKey={'checkCircle'}
                         animationRef={animationRef}
