@@ -20,12 +20,11 @@ const ItemCard = ({
     item,
 }: Props) => {
     const shoppingService = new ShoppingService(storageService, useAppDispatch());
+    const isVisible = shoppingService.getIsModalVisible();
+    const isRename = shoppingService.getIsModalRename();
 
     const animationRef = useRef<LottieView>(null);
     const [isPlaying, setIsPlaying] = useState(item.checked || false);
-    const [isVisible, setIsVisible] = useState(false);
-    const [isRename, setIsRename] = useState(false);
-    const [inputValue, setInputValue] = useState('');
 
     const handleAnimationIcon = () => {
         if (isPlaying) {
@@ -56,27 +55,27 @@ const ItemCard = ({
     }, []);
 
     const handleShowModal = () => {
-        setIsVisible(!isVisible);
-        setIsRename(false);
+        shoppingService.setIsModalVisibleInReducer(!isVisible, false);
     }
 
     const handleDeleteItem = async () => {
         await shoppingService.deleteItemFromList(name, item.name);
         await updateListInReducer();
 
-        setIsVisible(false);
+        shoppingService.setIsModalVisibleInReducer(false, false);
     }
 
     const handleRename = async () => {
         if (isRename) {
-            const updatedItem = { ...item, name: inputValue }
+            const inputValue = shoppingService.getInputValue();
+            const updatedItem = { ...item, name: inputValue ? inputValue : item.name };
             await shoppingService.updateItemName(name, item, updatedItem);
             await updateListInReducer();
-            setIsVisible(false);
-            setInputValue('');
+            shoppingService.setIsModalVisibleInReducer(false);
+            shoppingService.clearInputValue();
         }
 
-        setIsRename(!isRename);
+        shoppingService.setIsModalVisibleInReducer(false, !isRename);
     };
 
     return (
@@ -99,16 +98,11 @@ const ItemCard = ({
                 <S.Title $isPlayng={isPlaying}>{item.quantity}</S.Title>
             </S.Content>
 
-            <CustomModal.Root
-                isVisible={isVisible}
-                onClose={handleShowModal}
-            >
+            <CustomModal.Root isVisible={isVisible} onClose={handleShowModal}>
                 <CustomModal.Rename
                     title={'Gerenciar itens'}
-                    isRename={isRename}
                     onRename={handleRename}
                     onDelete={handleDeleteItem}
-                    onInputValue={setInputValue}
                 />
             </CustomModal.Root>
         </S.Container>
