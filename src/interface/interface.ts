@@ -53,8 +53,12 @@ export interface IShoppingService {
     updateListInReducer(list: ShoppingList | undefined): void;
     clearInputValue(): void;
     getInputValue(): string | undefined;
+    setInputValue(value: string): void;
     addListInReducer(list: ShoppingList): void;
     updateListNameInReducer(oldName: string, newName: string): void;
     deleteListInReducer(list: ShoppingList): void;
     setThemeInReducer(theme: ThemeType): void;
+    setIsModalVisibleInReducer(isVisible: boolean, isRename: boolean): void;
+    getIsModalVisible(): boolean;
+    getIsModalRename(): boolean;
 }
