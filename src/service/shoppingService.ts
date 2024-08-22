@@ -2,12 +2,13 @@ import {IShoppingService, IStorageService, ItemData, ShoppingList} from "../inte
 import {useAppDispatch, useAppSelector} from "../store/modules/hooks";
 import {
     addShoppingList,
-    clearInputValue, deleteShoppingList,
+    clearInputValue, deleteShoppingList, inputValue,
     updateShoppingList,
     updateShoppingListName
 } from "../store/modules/shoppingList/actions";
 import {ThemeType} from "../store/modules/theme/type";
 import {setTheme} from "../store/modules/theme/actions";
+import {showModal} from "../store/modules/modal/actions";
 
 
 export class ShoppingService implements IShoppingService {
@@ -172,6 +173,10 @@ export class ShoppingService implements IShoppingService {
         return useAppSelector((state) => state.cart?.inputValue);
     }
 
+    setInputValue(value: string): void {
+        this.dispatch(inputValue(value));
+    }
+
     addListInReducer(list: ShoppingList): void {
         this.dispatch(addShoppingList(list));
     }
@@ -186,5 +191,17 @@ export class ShoppingService implements IShoppingService {
 
     setThemeInReducer(theme: ThemeType): void {
         this.dispatch(setTheme({currentTheme: theme}));
+    }
+
+    setIsModalVisibleInReducer(isVisible?: boolean, isRename?: boolean): void {
+        this.dispatch(showModal(isVisible, isRename));
+    }
+
+    getIsModalVisible(): boolean {
+        return useAppSelector((state) => state.modal.isVisible);
+    }
+
+    getIsModalRename(): boolean {
+        return useAppSelector((state) => state.modal.isRename);
     }
 }
