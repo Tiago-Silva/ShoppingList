@@ -28,7 +28,7 @@ export const Routes = () => {
                                 <Header.Root>
                                     <Header.Title name="Home" />
                                     <Header.Right onShowModal={() => {}} />
-                                    <Header.Modal isVisible={false} onShowModal={() => {}} />
+                                    <Header.Modal isModalVisible={false} onShowModal={() => {}} />
                                 </Header.Root>
                             );
                         }
@@ -45,7 +45,7 @@ export const Routes = () => {
                                     <Header.Left onNavigation={navigation.goBack} />
                                     <Header.Title name="Lista" />
                                     <Header.Right onShowModal={() => {}} />
-                                    <Header.Modal isVisible={false} onShowModal={() => {}} />
+                                    <Header.Modal isModalVisible={false} onShowModal={() => {}} />
                                 </Header.Root>
                             );
                         }
@@ -64,7 +64,7 @@ export const Routes = () => {
                                     <Header.Left onNavigation={navigation.goBack} />
                                     <Header.Title name={name} />
                                     <Header.Right onShowModal={() => {}} />
-                                    <Header.Modal isVisible={false} onShowModal={() => {}} />
+                                    <Header.Modal isModalVisible={false} onShowModal={() => {}} />
                                 </Header.Root>
                             );
                         }
