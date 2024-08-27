@@ -39,7 +39,7 @@ const AddItems = () => {
         <S.Container>
             {inputValue && (
                 <S.LineItem>
-                    <S.WrapperIcon onPress={handleAddItem}>
+                    <S.WrapperIcon onPress={handleAddItem} testID={'add-button'}>
                         <S.Icon name='plus-circle'/>
                     </S.WrapperIcon>
                     <S.Title>{inputValue}</S.Title>
