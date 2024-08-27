@@ -3,12 +3,15 @@ import {ItemData} from "../../interface/interface";
 export const mockShoppingService = {
     getShoppingList: jest.fn(),
     updateListInReducer: jest.fn(),
+    addItem: jest.fn(),
     updateItem: jest.fn(),
     deleteItemFromList: jest.fn(),
     updateItemName: jest.fn(),
     getIsModalVisible: jest.fn().mockReturnValue(true),
     getIsModalRename: jest.fn().mockReturnValue(true),
     setIsModalVisibleInReducer: jest.fn(),
+    clearInputValue: jest.fn(),
+    getInputValue: jest.fn().mockReturnValue('New Item'),
 };
 
 export const mockItem: ItemData = {
