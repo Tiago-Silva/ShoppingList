@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { Header } from '../../../components/header';
-import { Providers } from '../../../providers/Providers';
+import { Header } from '../../../presentation/components/header';
+import { Providers } from '../../../presentation/providers/Providers';
 
 describe('Header.Title Component', () => {
     it('should render title correctly', () => {

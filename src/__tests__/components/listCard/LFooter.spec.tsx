@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import { Providers } from "../../../providers/Providers";
-import LFooter from "../../../components/ListCard/LFooter";
+import { Providers } from "../../../presentation/providers/Providers";
+import LFooter from "../../../presentation/components/ListCard/LFooter";
 import { mockListItem } from "../../../__Mocks__/global/mocks";
 import { useTheme } from "styled-components";
 

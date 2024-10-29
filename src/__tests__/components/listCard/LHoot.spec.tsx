@@ -1,16 +1,16 @@
 import React from "react";
 import { act, fireEvent, render } from "@testing-library/react-native";
-import { Providers } from "../../../providers/Providers";
-import { useAppDispatch, useAppSelector } from "../../../store/modules/hooks";
+import { Providers } from "../../../presentation/providers/Providers";
+import { useAppDispatch, useAppSelector } from "../../../infrastructure/data/store/modules/hooks";
 import { useTheme } from "styled-components";
 import { useNavigation } from "@react-navigation/native";
 import { mockListItem, mockShoppingService } from "../../../__Mocks__/global/mocks";
-import { ShoppingService } from "../../../service/shoppingService";
-import { IModalShow } from "../../../store/modules/modal/type";
-import LRoot from "../../../components/ListCard/LRoot";
+import { ShoppingService } from "../../../infrastructure/data/service/shoppingService";
+import { IModalShow } from "../../../infrastructure/data/store/modules/modal/type";
+import LRoot from "../../../presentation/components/ListCard/LRoot";
 
-jest.mock('../../../service/shoppingService');
-jest.mock('../../../store/modules/hooks');
+jest.mock('../../../infrastructure/data/service/shoppingService');
+jest.mock('../../../infrastructure/data/store/modules/hooks');
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('styled-components', () => ({
     ...jest.requireActual('styled-components'),

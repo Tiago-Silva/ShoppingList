@@ -1,13 +1,13 @@
 import React from 'react';
 import {render, fireEvent, act} from '@testing-library/react-native';
-import ItemCard from '../../../components/itemCard';
-import { ShoppingService } from '../../../service/shoppingService';
-import { useAppDispatch } from '../../../store/modules/hooks';
-import {Providers} from "../../../providers/Providers";
+import ItemCard from '../../../presentation/components/itemCard';
+import { ShoppingService } from '../../../infrastructure/data/service/shoppingService';
+import { useAppDispatch } from '../../../infrastructure/data/store/modules/hooks';
+import {Providers} from "../../../presentation/providers/Providers";
 import {mockItem, mockShoppingService} from "../../../__Mocks__/global/mocks";
 
-jest.mock('../../../service/shoppingService');
-jest.mock('../../../store/modules/hooks');
+jest.mock('../../../infrastructure/data/service/shoppingService');
+jest.mock('../../../infrastructure/data/store/modules/hooks');
 
 const mockDispatch = jest.fn();
 (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch);

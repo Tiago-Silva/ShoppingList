@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
-import { Providers } from "../../../providers/Providers";
-import { Input } from "../../../components/input";
+import { Providers } from "../../../presentation/providers/Providers";
+import { Input } from "../../../presentation/components/input";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
 

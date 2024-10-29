@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react-native';
-import AddItems from '../../../screens/addItems';
-import { ShoppingService } from '../../../service/shoppingService';
-import { useAppDispatch } from '../../../store/modules/hooks';
-import { Providers } from "../../../providers/Providers";
+import AddItems from '../../../presentation/screens/addItems';
+import { ShoppingService } from '../../../infrastructure/data/service/shoppingService';
+import { useAppDispatch } from '../../../infrastructure/data/store/modules/hooks';
+import { Providers } from "../../../presentation/providers/Providers";
 import { mockShoppingService } from "../../../__Mocks__/global/mocks";
 
-jest.mock('../../../service/shoppingService');
-jest.mock('../../../store/modules/hooks');
+jest.mock('../../../infrastructure/data/service/shoppingService');
+jest.mock('../../../infrastructure/data/store/modules/hooks');
 jest.mock('@react-navigation/native', () => ({
     useRoute: () => ({
         params: { name: 'Test List' }

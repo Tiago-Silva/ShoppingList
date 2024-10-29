@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, act, cleanup } from '@testing-library/react-native';
-import { CustomModal } from '../../../components/customModal';
-import {Providers} from "../../../providers/Providers";
+import { CustomModal } from '../../../presentation/components/customModal';
+import {Providers} from "../../../presentation/providers/Providers";
 
 jest.mock('@react-native-async-storage/async-storage');
 const renderWithTheme = (component: React.ReactElement) => {

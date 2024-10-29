@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import Button from "../../../components/button";
-import {Providers} from "../../../providers/Providers";
+import Button from "../../../presentation/components/button";
+import {Providers} from "../../../presentation/providers/Providers";
 
 jest.mock('@react-native-async-storage/async-storage');
 const renderWithTheme = (component: React.ReactElement) => {

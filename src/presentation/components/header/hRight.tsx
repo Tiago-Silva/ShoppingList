@@ -1,0 +1,27 @@
+import React from 'react';
+import * as S from "./styles";
+import IconAnimation from "../animation/IconAnimation";
+import {StorageService} from "../../../infrastructure/data/service/storageService";
+import {ThemeService} from "../../../infrastructure/data/service/themeService";
+
+interface Props {
+    onShowModal: () => void;
+}
+
+const storageService = new StorageService();
+const themeService = new ThemeService(storageService);
+
+const HRight = ({ onShowModal }: Props) => {
+    const theme = themeService.handleGetThemeToRedux();
+
+    return (
+        <S.WrapperIcon>
+            <IconAnimation animationKey={'topperRabbit'} width={50} height={50} top={-17} />
+            <S.WrapperTouchIcon onPress={onShowModal} testID="right-icon">
+                <S.Icon name={theme === 'dark' ? 'moon' : 'sun'} />
+            </S.WrapperTouchIcon>
+        </S.WrapperIcon>
+    );
+};
+
+export default HRight;

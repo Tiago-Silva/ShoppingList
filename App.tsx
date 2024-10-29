@@ -1,7 +1,7 @@
 import { StatusBar } from 'react-native';
-import {Routes} from "./src/routes";
+import {Routes} from "./src/presentation/routes";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
-import {Providers} from "./src/providers/Providers";
+import {Providers} from "./src/presentation/providers/Providers";
 import { enableScreens } from 'react-native-screens';
 
 enableScreens();

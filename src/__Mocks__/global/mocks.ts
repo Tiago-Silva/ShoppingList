@@ -1,4 +1,4 @@
-import {ItemData} from "../../interface/interface";
+import {ItemData} from "../../infrastructure/data/interface/interface";
 
 export const mockShoppingService = {
     getShoppingList: jest.fn(),

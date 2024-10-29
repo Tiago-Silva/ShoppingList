@@ -1,7 +1,7 @@
 import React from "react";
 import {render, fireEvent, act} from "@testing-library/react-native";
-import { Providers } from "../../../providers/Providers";
-import LHeader from "../../../components/ListCard/LHeader";
+import { Providers } from "../../../presentation/providers/Providers";
+import LHeader from "../../../presentation/components/ListCard/LHeader";
 
 describe('LHeader component', () => {
     it('renders correctly', () => {

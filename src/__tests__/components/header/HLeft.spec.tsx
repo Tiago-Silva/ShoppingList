@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import { Header } from '../../../components/header';
-import { Providers } from '../../../providers/Providers';
+import { Header } from '../../../presentation/components/header';
+import { Providers } from '../../../presentation/providers/Providers';
 
 describe('Header.Left Component', () => {
     it('should call onNavigation when icon is pressed', () => {
